@@ -3,16 +3,6 @@
     border-radius: 0;
   }
 
-footer {
-    padding: 0px;
-    margin-top: 0px;
-    border-top: 0px;
-    color: white;
-    background-color: rgb(34, 31, 31);
-    position:absolute;
-    bottom:0;
-    width: 100%;
-  }
 
 .container {
     width: 100%;
