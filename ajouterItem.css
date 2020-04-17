@@ -1,0 +1,28 @@
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.titre {
+  margin:auto;
+  display: block;
+  text-align: center;
+  margin-top: 60px;
+  color: whitesmoke;
+}
+
+body {
+  background-image: url(bois.png);
+  background-repeat: repeat;
+}
+
+.well {
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 38%;
+}
+
+.bouton {
+  text-align:center;
+}
