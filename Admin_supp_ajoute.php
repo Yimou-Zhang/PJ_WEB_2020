@@ -71,7 +71,7 @@ session_start();
         }
         ?>
         <!-- On passe sur du HTML pour remplir un formulaire de demande Ajouter ou Supprimer -->
-        <form action="du.php" method="post" class="contain" enctype='multipart/form-data' >
+        <form action="Admin_supp_ajoute.php" method="post" class="contain" enctype='multipart/form-data' >
         <table>
             <tr>
                 <td colspan="2" align="center">
@@ -86,7 +86,7 @@ session_start();
         if(isset($_POST["ajoute"])){ //Les conditions ne fonctionnent qu'avec du php puis on remplit avec un formulaire pour l'email a ajouter
             ?>
             <!-- Formulaire d'inscription pour ajouter un vendeur -->
-            <form action="du.php" method="post" class="contain" enctype='multipart/form-data' >
+            <form action="Admin_supp_ajoute.php" method="post" class="contain" enctype='multipart/form-data' >
                 <table>
                 <tr>
                     <td>Nom:</td>
@@ -132,7 +132,7 @@ session_start();
         }
         if(isset($_POST["supprime"])){ //Ici un formulaire pour supprimer et il suffit de taper le mail du vendeur
         ?>
-        <form action="du.php" method="post" class="contain" enctype='multipart/form-data' >
+        <form action="Admin_supp_ajoute" method="post" class="contain" enctype='multipart/form-data' >
             <table>
                 <tr>
                     <td>Email:</td>
