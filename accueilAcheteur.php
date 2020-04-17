@@ -22,11 +22,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="accueilAcheteur.html">Ebay ECE</a>
+                <a class="navbar-brand" href="accueilAcheteur.php">Ebay ECE</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="accueilAcheteur.html"><span class="glyphicon glyphicon-home"></span>
+                    <li class="active"><a href="accueilAcheteur.php"><span class="glyphicon glyphicon-home"></span>
                             Accueil</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -39,9 +39,9 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="monPanier.html"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
+                    <li><a href="monPanier.php"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
                     <li><a href="monCompte.html"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
-                </ul>
+                </ul> 
             </div>
         </div>
     </nav>
