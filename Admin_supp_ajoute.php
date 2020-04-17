@@ -11,13 +11,15 @@ session_start();
 /////////////////////////////////Supprimer une personne
         if(isset($_POST["oui_supprime"])){
             $t_email = isset($_POST["t_mail"])? $_POST["t_mail"] : "";
-            $sql = "SELECT * FROM utilisateur WHERE type LIKE 'vendeur'";
+
+            if($t_email){ 
+            $sql = 0;
             if ($t_email != "") {
-                $sql .= " AND email LIKE '%$t_email%'";
+                $sql = "SELECT * FROM utilisateur WHERE type LIKE 'vendeur' AND email LIKE '%$t_email%'";
             }
             $result = mysqli_query($db_handle, $sql);
             if (mysqli_num_rows($result) == 0) {
-                echo "Personne non trouvé";
+                echo "Personne non trouvé"; 
             }else {
                 while ($data = mysqli_fetch_assoc($result) ) {
                     $id = $data['idUtilisateur'];
@@ -26,6 +28,10 @@ session_start();
                 $sql .= " WHERE idUtilisateur = $id";
                 $result = mysqli_query($db_handle, $sql); 
             }
+            } else {
+                echo "Nous n'avons pas trouvé le mail";
+            }
+
         }
 ////////Ajouter une personne grace a une formulaire
         if(isset($_POST["oui_ajoute"])){
@@ -37,6 +43,7 @@ session_start();
             $photo = isset($_FILES["photo"]['name'])? $_FILES["photo"]['name'] : "";
             $fonction = isset($_POST["fonction"])? $_POST["fonction"] : "";
 
+            if($nom || $prenom || $email || $password || $pseudo || $photo ){
             $sql = "SELECT * FROM utilisateur";
             if ($email != "") {
                 $sql .= " WHERE email LIKE '%$email%'";
@@ -48,6 +55,10 @@ session_start();
                 $sql = "INSERT INTO utilisateur(nom, Prenom, email, motDePasse, pseudo, photoProfil, type) VALUES ('$nom','$prenom','$email','$password','$pseudo','$photo','$fonction')";
                 $result = mysqli_query($db_handle, $sql);//On enregistre
             }
+            }else {
+                echo "Champ non remplis";
+            }
+
         }
 ////////////Boucle de recherche d'identification pour l'acheteur
         $sql = "SELECT * FROM utilisateur WHERE type LIKE 'vendeur'";
@@ -71,7 +82,7 @@ session_start();
         }
         ?>
         <!-- On passe sur du HTML pour remplir un formulaire de demande Ajouter ou Supprimer -->
-        <form action="du.php" method="post" class="contain" enctype='multipart/form-data' >
+        <form action="Admin_supp_ajoute.php" method="post" class="contain" enctype='multipart/form-data' >
         <table>
             <tr>
                 <td colspan="2" align="center">
@@ -86,7 +97,7 @@ session_start();
         if(isset($_POST["ajoute"])){ //Les conditions ne fonctionnent qu'avec du php puis on remplit avec un formulaire pour l'email a ajouter
             ?>
             <!-- Formulaire d'inscription pour ajouter un vendeur -->
-            <form action="du.php" method="post" class="contain" enctype='multipart/form-data' >
+            <form action="Admin_supp_ajoute.php" method="post" class="contain" enctype='multipart/form-data' >
                 <table>
                 <tr>
                     <td>Nom:</td>
@@ -132,7 +143,7 @@ session_start();
         }
         if(isset($_POST["supprime"])){ //Ici un formulaire pour supprimer et il suffit de taper le mail du vendeur
         ?>
-        <form action="du.php" method="post" class="contain" enctype='multipart/form-data' >
+        <form action="Admin_supp_ajoute.php" method="post" class="contain" enctype='multipart/form-data' >
             <table>
                 <tr>
                     <td>Email:</td>
