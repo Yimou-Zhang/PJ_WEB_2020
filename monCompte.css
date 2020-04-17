@@ -1,0 +1,68 @@
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+
+footer {
+    padding: 0px;
+    margin-top: 0px;
+    border-top: 0px;
+    color: white;
+    background-color: rgb(34, 31, 31);
+    position:absolute;
+    bottom:0;
+    width: 100%;
+  }
+
+.container {
+    width: 100%;
+    color: whitesmoke;
+}
+
+body {
+    background-image: url(bois.png);
+    background-repeat: repeat-y;
+}
+
+.well {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    margin-bottom: 70px;
+}
+
+.bouton {
+    margin:auto;
+    display: block;
+    text-align: center;
+}
+
+.titre {
+    margin:auto;
+    display: block;
+    text-align: center;
+    margin-top: 60px;
+    color: whitesmoke;
+}
+
+.titre img {
+    margin-left: -6%;
+    border: solid whitesmoke ;
+    width: 100px;
+    height: 100px;
+}
+
+.bouton a {
+    margin-top: 4px;
+}
+
+footer {
+    color: rgb(110, 110, 110);
+    background-color: rgb(34, 31, 31);
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

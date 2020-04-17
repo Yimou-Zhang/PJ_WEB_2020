@@ -1,0 +1,18 @@
+body {
+    background-image: url(bois.png);
+    background-repeat: repeat;
+}
+
+.formu {
+    margin-top: 30px;
+    margin-right: 14%;
+    margin-left: 14%;
+}
+
+.titre {
+    margin:auto;
+    display: block;
+    text-align: center;
+    margin-top: 60px;
+    color: whitesmoke;
+}
