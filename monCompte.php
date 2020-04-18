@@ -16,7 +16,9 @@
 </head>
 
 <body>
-
+    <?php 
+        if($_SESSION['fonction'] == 'acheteur'){ //Affichage de l'accueil seulement si l'utilisateur est l'acheteur
+    ?>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid fixed-top">
             <div class="navbar-header">
@@ -58,10 +60,65 @@
         </div>
     </nav>
 
-    <!--Bouton s'identifier vendeur-->
+    <!--Bouton s'identifier vendeur et se déconnecter-->
+    <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
+        <a class="btn btn-danger" href="testing1.php" role="button">Se déconnecter</a>
+    </div>
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
         <a class="btn btn-primary" href="testing1.php" role="button">S'identifier en tant que vendeur</a>
     </div>
+    
+    <!--PHP fin de la condition-->
+    <?php
+        }
+        if($_SESSION['fonction'] == 'vendeur'){ //Vendeur 
+    ?>
+
+<nav class="navbar navbar-inverse">
+        <div class="container-fluid fixed-top">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="accueilVendeur.php">Ebay ECE</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="accueilVendeur.php"><span class="glyphicon glyphicon-home"></span>
+                            Accueil</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Catégories</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="categorieItem.php">Meubles</a><br>
+                            <a class="dropdown-item" href="categorieItem.php">Tableaux</a><br>
+                            <a class="dropdown-item" href="categorieItem.php">Bijouterie</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter Item</a></li>
+                    <li class="active"><a href="monCompte.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--Boutons se déconnecter et s'identifier vendeur-->
+    <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
+        <a class="btn btn-danger" href="testing1.php" role="button">Se déconnecter</a>
+    </div>
+    
+    <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
+        <a class="btn btn-primary" href="testing1.php" role="button">S'identifier en tant qu'acheteur</a>
+    </div>
+
+    <?php
+    }
+    ?>
+
 
     <!--Titre avec photo-->
     <div class="titre">
@@ -93,10 +150,10 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
                     <input type="email" class="form-control" name="email"
-                        placeholder="<?php echo $_SESSION['email'] ?>" readonly><!-- Affichage du email -->
+                        placeholder="<?php echo $_SESSION['email'] ?>" readonly><!-- Affichage de l'email -->
                 </div>
             </div>
 

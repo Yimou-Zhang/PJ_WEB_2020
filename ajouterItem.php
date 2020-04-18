@@ -28,7 +28,7 @@
 }
 </script>
 
-
+<!--Ici il faut ajouter Supprimer ou Ajouter un item, comme ajouter/suppr un vendeur-->
 
 </head>
 
