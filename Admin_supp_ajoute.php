@@ -295,7 +295,7 @@ session_start();
             <div class="well" style="width:50%">
                 <div class="row" style="margin-top:0px">
                     <div class="col-sm-3">
-                        <img src="<?php  $image = $data['photoProfil']; ?>" class="img-responsive" style="width:100%" alt="Photo de Profil">
+                        <img src="<?php  echo $data['photoProfil']; ?>" class="img-responsive" style="width:100%" alt="Photo de Profil">
                     </div>
                     <div class="col-sm-4">
                         <p><strong>Nom : </strong></p> <?php echo $data['nom']; ?> <!--Affichage Prénom-->
