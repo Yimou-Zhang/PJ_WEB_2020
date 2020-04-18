@@ -77,25 +77,25 @@
             <div class="form-group row">
                 <label for="nom" class="col-sm-2 col-form-label">Nom</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" placeholder="<?php echo $_SESSION['nom'] ?>" id="nom" readonly> <!-- Affichage du nom -->
+                    <input class="form-control" type="text" placeholder="<?php echo $_SESSION['nom'] ?>" name="nom" readonly> <!-- Affichage du nom -->
                 </div>
             </div>
             <div class="form-group row">
                 <label for="prénom" class="col-sm-2 col-form-label">Prénom</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" placeholder="<?php echo $_SESSION['prenom'] ?>" id="prénom" readonly><!-- Affichage du prenom -->
+                    <input class="form-control" type="text" placeholder="<?php echo $_SESSION['prenom'] ?>" name="prénom" readonly><!-- Affichage du prenom -->
                 </div>
             </div>
             <div class="form-group row">
                 <label for="pseudo" class="col-sm-2 col-form-label">Pseudo</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" placeholder="<?php echo $_SESSION['pseudo'] ?>" id="pseudo" readonly><!-- Affichage du pseudo -->
+                    <input class="form-control" type="text" placeholder="<?php echo $_SESSION['pseudo'] ?>" name="pseudo" readonly><!-- Affichage du pseudo -->
                 </div>
             </div>
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                    <input type="email" class="form-control" name="email"
                         placeholder="<?php echo $_SESSION['email'] ?>" readonly><!-- Affichage du email -->
                 </div>
             </div>
@@ -103,14 +103,14 @@
             <div class="form-group row">
                 <label for="fonction" class="col-sm-2 col-form-label">Fonction</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" placeholder="<?php echo $_SESSION['fonction'] ?>" id="fonction" readonly><!-- Affichage de fonction -->
+                    <input class="form-control" type="text" placeholder="<?php echo $_SESSION['fonction'] ?>" name="fonction" readonly><!-- Affichage de fonction -->
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-5">
-                    <input type="password" class="form-control" id="inputPassword" style="margin-left: 15px;" placeholder="<?php echo $_SESSION['password'] ?>" readonly><!-- Affichage du mdp -->
+                    <input type="password" class="form-control" name="password" style="margin-left: 15px;" placeholder="<?php echo $_SESSION['password'] ?>" readonly><!-- Affichage du mdp -->
                 </div>
             </div>
             <div class="bouton">
