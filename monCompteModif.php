@@ -126,7 +126,7 @@ if($_SESSION['fonction'] == 'acheteur'){ //Affichage de l'accueil seulement si l
     </nav>
     <?php
 }
-if($_SESSION['fonction'] == 'vendeur'){
+if($_SESSION['fonction'] == 'vendeur'){ //Vendeur 
 ?>
 <nav class="navbar navbar-inverse">
         <div class="container-fluid fixed-top">
