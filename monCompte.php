@@ -31,13 +31,22 @@
                 <ul class="nav navbar-nav">
                     <li><a href="accueilAcheteur.php"><span class="glyphicon glyphicon-home"></span>
                             Accueil</a></li>
+                            <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Catégories d'Items</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="categorieItem.php"> Meubles</a><br>
+                            <a class="dropdown-item" href="categorieItem.php"> Tableaux</a><br>
+                            <a class="dropdown-item" href="categorieItem.php"> Bijouterie</a>
+                        </div>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Catégories</a>
+                            Catégories d'Achats</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Meubles</a><br>
-                            <a class="dropdown-item" href="#">Tableaux</a><br>
-                            <a class="dropdown-item" href="#">Bijouterie</a>
+                            <a class="dropdown-item" href="categorieAchat.php"> Vente Directe</a><br>
+                            <a class="dropdown-item" href="categorieAchat.php"> Enchère</a><br>
+                            <a class="dropdown-item" href="categorieAchat.php"> Négociation</a>
                         </div>
                     </li>
                 </ul>
@@ -51,7 +60,7 @@
 
     <!--Bouton s'identifier vendeur-->
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
-        <a class="btn btn-primary" href="#" role="button">S'identifier en tant que vendeur</a>
+        <a class="btn btn-primary" href="testing1.php" role="button">S'identifier en tant que vendeur</a>
     </div>
 
     <!--Titre avec photo-->

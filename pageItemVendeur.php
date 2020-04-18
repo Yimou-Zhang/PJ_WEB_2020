@@ -13,7 +13,7 @@
 
 <body>
 
-    <nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse">
         <div class="container-fluid fixed-top">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -21,34 +21,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="accueilAcheteur.php">Ebay ECE</a>
+                <a class="navbar-brand" href="accueilVendeur.php">Ebay ECE</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="accueilAcheteur.php"><span class="glyphicon glyphicon-home"></span>
+                    <li><a href="accueilVendeur.php"><span class="glyphicon glyphicon-home"></span>
                             Accueil</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Catégories d'Items</a>
+                            Catégories</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="categorieItem.php"> Meubles</a><br>
-                            <a class="dropdown-item" href="categorieItem.php"> Tableaux</a><br>
-                            <a class="dropdown-item" href="categorieItem.php"> Bijouterie</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Catégories d'Achats</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="categorieAchat.php"> Vente Directe</a><br>
-                            <a class="dropdown-item" href="categorieAchat.php"> Enchère</a><br>
-                            <a class="dropdown-item" href="categorieAchat.php"> Négociation</a>
+                            <a class="dropdown-item" href="#">Meubles</a><br>
+                            <a class="dropdown-item" href="#">Tableaux</a><br>
+                            <a class="dropdown-item" href="#">Bijouterie</a>
                         </div>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="monPanier.php"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
-                    <li><a href="monCompte.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+                    <li><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter Item</a></li>
+                    <li><a href="monCompteVendeur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
                 </ul>
             </div>
         </div>
@@ -121,18 +112,9 @@
             </div>
         </div>
     </div>
-
-    <!--A MODIFIER EN PHP, mettre des conditions pour le type d'achat-->
     <div class="bouton">
-        <a href="accueilAcheteur.php">
-            <button type="button" class="btn btn-primary" onclick="validate()">Acheter directement</button>   <!--si achat immédiat -> Ajouter au panier l'item et le supprimer pour qu'il n'apparaissent plus sur l'accueil et dans les catégories d'achat -->
-            <script> function validate() {alert("Item ajouté au Panier");} </script>
-        </a>
-        <a href="negociation.php">
-            <button type="button" class="btn btn-primary">Aller à la Négociation</button> <!-- Si item est à négocier, aller à la page negociation.php de l'item -->
-        </a>
-        <a href="enchere.php">
-            <button type="button" class="btn btn-primary">Aller à l'Enchère</button>     <!-- Si item est aux enchères, aller à la page enchere.php de l'item -->
+        <a href="accueilVendeur.php">
+            <button type="button" class="btn btn-primary">Retour à l'Accueil</button>
         </a>
     </div>
 

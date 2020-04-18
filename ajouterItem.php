@@ -23,7 +23,7 @@
             (document.getElementById("mesphotos").value ==='') ||
             (document.getElementById("vente").value ==='') ||
             (document.getElementById("prix").value ==='')) {    
-                alert("Veuillez remplir tous les champs s'il-vous-plaît <br> (Vidéo optionnelle)"); }
+                alert("Veuillez remplir tous les champs s'il-vous-plaît  (Vidéo optionnelle)"); }
         else { window.location="accueilVendeur.php";}    
 }
 </script>
@@ -61,7 +61,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter
                             Item</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+                    <li><a href="monCompteVendeur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
                 </ul>
             </div>
         </div>
@@ -78,7 +78,17 @@
             <div class="form-group row">
                 <label for="nom" class="col-sm-2 col-form-label">Nom de l'Item</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" placeholder="#" id="nom">
+                    <input class="form-control" type="text"  id="nom">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="cate" class="col-sm-2 col-form-label">Catégorie</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="cate">
+                        <option selected>Meubles</option>
+                        <option>Tableaux</option>
+                        <option>Bijoux</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
@@ -118,7 +128,7 @@
             <div class="form-group row">
                 <label for="prix" class="col-sm-2 col-form-label">Prix de vente</label>
                 <div class="col-sm-5">
-                    <input class="form-control" type="text" placeholder="#" id="prix">
+                    <input class="form-control" type="text" id="prix">
                 </div>
             </div>
 
