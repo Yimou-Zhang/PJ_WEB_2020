@@ -52,11 +52,20 @@ function testEmpty() {
                             Accueil</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Catégories</a>
+                            Catégories d'Items</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Meubles</a><br>
-                            <a class="dropdown-item" href="#">Tableaux</a><br>
-                            <a class="dropdown-item" href="#">Bijouterie</a>
+                            <a class="dropdown-item" href="categorieItem.php"> Meubles</a><br>
+                            <a class="dropdown-item" href="categorieItem.php"> Tableaux</a><br>
+                            <a class="dropdown-item" href="categorieItem.php"> Bijouterie</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Catégories d'Achats</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="categorieAchat.php"> Vente Directe</a><br>
+                            <a class="dropdown-item" href="categorieAchat.php"> Enchère</a><br>
+                            <a class="dropdown-item" href="categorieAchat.php"> Négociation</a>
                         </div>
                     </li>
                 </ul>
@@ -164,8 +173,6 @@ function testEmpty() {
             </div>  
         </div>
     </div>
-    
-  
     
 </body>
 </html>

@@ -1,8 +1,9 @@
+</html>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>S'identifier</title>
+    <title>Connexion</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -11,17 +12,7 @@
 
     <!--Partie CSS-->
     <style>
-        .conteneur {
-            display: flex;
-            height: 800px;
-            justify-content: center;
-            align-items: center;
-        }
-        .contain {
-            background-color: white;
-            border: solid ;
-            padding :50px;
-        }
+        
         .container {
             width: 100%;
             color: whitesmoke;
@@ -51,12 +42,11 @@
             margin:auto;
             display: block;
             text-align: center;
-            margin-top: 60px;
+            margin-top: 8%;
             color: whitesmoke;
         }
 
         .well {
-            margin-top: 30px;
             margin-left: auto;
             margin-right: auto;
             width: 30%;
@@ -66,55 +56,30 @@
 </head>
 
 <body>
-    
-
-<!--Titre-->
+    <!--Titre-->
 <div class="titre">
         <h2>
-        <span class="glyphicon glyphicon-user"></span> S'identifier
+        <span class="glyphicon glyphicon-check"></span> Se connecter
         </h2>
     </div>
     
     <!--Formulaire-->
-    <div class="well">
-        <form action="testing2.php" method="post"  enctype='multipart/form-data' >
+    <div class="well" style="margin-top:5%">
+        <form action="testing2.php" method="post" class="contain">
             <div class="form-group row" style="margin-top:20px">
-                <label for="pseudo" class="col-sm-3 col-form-label">Pseudo</label>
-                <div class="col-sm-9">
-                    <input class="form-control" type="text" id="pseudo" name="pseudo">
-                </div>
-            </div>
-            <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
-                    <input class="form-control" type="text"  id="email" name="email" >
+                    <input class="form-control" type="text" id="email" name="email">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="fonction" class="col-sm-3 col-form-label">Fonction</label>
+                <label for="email" class="col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-9">
-                    <select name="fonction">
-                        <option value="acheteur">Acheteur </option>
-                        <option value="vendeur">Vendeur </option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="photo" class="col-sm-3 col-form-label">Photo de Profil</label>
-                <div class="col-sm-9">
-                    <input class="form-control" type="file" id="photo" name="photo">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="password" class="col-sm-3 col-form-label">Password</label>
-                <div class="col-sm-5">
-                    <input type="password" class="form-control" id="password" name="password" >
+                    <input class="form-control" type="password"  id="password" name="password" >
                 </div>
             </div>
             <div class="bouton" style="text-align:center">
-                <a class="btn btn-primary" role="button" name="inscrire"><strong>S'inscire</strong></a>
+                <a class="btn btn-primary" role="button" name="inscrire"><strong>Se connecter</strong></a>
             </div>
         </form>
     </div>
@@ -123,7 +88,6 @@
     <footer class="container-fluid text-center">
         <p>Site designé par Yimou ZHANG, Pascal CHEN et Matthis LARBODIERE</p>
     </footer>
-
 </body>
 
 </html>

@@ -14,7 +14,7 @@
 
 <body>
 
-    <nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse">
         <div class="container-fluid fixed-top">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -26,9 +26,9 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="accueilAcheteur.php"><span class="glyphicon glyphicon-home"></span>
+                    <li><a href="accueilAcheteur.php"><span class="glyphicon glyphicon-home"></span>
                             Accueil</a></li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Catégories d'Items</a>
                         <div class="dropdown-menu">
@@ -55,74 +55,10 @@
         </div>
     </nav>
 
-    <!--Carousel (défilement image)-->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicateurs -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
-        </ol>
-
-        <!--Type de slides du carousel-->
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <a href="pageItem.php">
-                    <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
-                    <div class="carousel-caption">
-                        <h4>Item à la Une</h4>
-                        <p>Prix spéciaux</p>
-                </div>
-                </a>
-            </div>
-
-            <div class="item">
-                <a href="pageItem.php">
-                <img src="https://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
-                <div class="carousel-caption">
-                    <h3>Item à la Une</h3>
-                    <p>Prix spéciaux</p>
-                </div>
-                </a>
-            </div>
-
-            <div class="item">
-                <a href="pageItem.php">
-                <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
-                <div class="carousel-caption">
-                    <h3>Item à la Une</h3>
-                    <p>Prix spéciaux</p>
-                </div>
-            </a>
-            </div>
-
-            <div class="item">
-                <a href="pageItem.php">
-                <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
-                <div class="carousel-caption">
-                    <h3>Item à la Une</h3>
-                    <p>Prix spéciaux</p>
-                </div>
-                </a>
-            </div>
-
-        </div>
-
-        <!-- Changer de page carousel -->
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
 
     <!--Galerie d'images-->
     <div class="container text-center">
-        <h3>Items proposés</h3><br>
+        <h3>Items de la Catégorie : </h3><br>  <!--Ajouter nom de la catégorie-->
         <div class="row">
             <div class="col-sm-3">
                 <a href="pageItem.php">
@@ -171,11 +107,10 @@
         </div>
     </div><br>
 
-    <!--Footer-->
+<!--
     <footer class="container-fluid text-center">
         <p>Site designé par Yimou ZHANG, Pascal CHEN et Matthis LARBODIERE</p>
-    </footer>
-
+    </footer>-->
 </body>
 
 </html>

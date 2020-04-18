@@ -40,7 +40,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter Item</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+                    <li><a href="monCompteVendeur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
                 </ul>
             </div>
         </div>
@@ -52,29 +52,56 @@
         <h3>Mes items en ligne</h3><br>
         <div class="row">
             <div class="col-sm-3">
-                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                <p>Item 1 32€</p>
+                <a href="pageItemVendeur.php">
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <div style="float:left">
+                        Nom Item
+                    </div>
+                    <div style="float:right">
+                        Prix
+                    </div>
+                </a>
             </div>
             <div class="col-sm-3">
-                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                <p>Item 2 35€</p>
+                <a href="pageItemVendeur.php">
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <div style="float:left">
+                        Nom Item
+                    </div>
+                    <div style="float:right">
+                        Prix
+                    </div>
+                </a>
             </div>
             <div class="col-sm-3">
-                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                <p>Item 3 35€</p>
+                <a href="pageItemVendeur.php">
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <div style="float:left">
+                        Nom Item
+                    </div>
+                    <div style="float:right">
+                        Prix
+                    </div>
+                </a>
             </div>
             <div class="col-sm-3">
-                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                <p>Item 4 35€</p>
+                <a href="pageItemVendeur.php">
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <div style="float:left">
+                        Nom Item
+                    </div>
+                    <div style="float:right">
+                        Prix
+                    </div>
+                </a>
             </div>
         </div>
     </div><br>
 
-    <!--Footer-->
+<!--
     <footer class="container-fluid text-center">
         <p>Site designé par Yimou ZHANG, Pascal CHEN et Matthis LARBODIERE</p>
-    </footer>
-
+    </footer>-->
 </body>
 
 </html>
