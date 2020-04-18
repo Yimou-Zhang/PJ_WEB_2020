@@ -81,6 +81,9 @@
     </script>
 </head>
 <body>
+<?php 
+if($_SESSION['fonction'] == 'acheteur'){ //Affichage de l'accueil seulement si l'utilisateur est l'acheteur
+?>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid fixed-top">
             <div class="navbar-header">
@@ -121,6 +124,44 @@
             </div>
         </div>
     </nav>
+    <?php
+}
+if($_SESSION['fonction'] == 'vendeur'){
+?>
+<nav class="navbar navbar-inverse">
+        <div class="container-fluid fixed-top">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="accueilVendeur.php">Ebay ECE</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="accueilVendeur.php"><span class="glyphicon glyphicon-home"></span>
+                            Accueil</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Catégories</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Meubles</a><br>
+                            <a class="dropdown-item" href="#">Tableaux</a><br>
+                            <a class="dropdown-item" href="#">Bijouterie</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter Item</a></li>
+                    <li><a href="monCompteVendeur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <?php
+    }
+    ?>
     <div class="titre">
         <h2>
         <img src="<?php echo $_SESSION['photo'] ?>" class="img-circle" width="20%"> 
