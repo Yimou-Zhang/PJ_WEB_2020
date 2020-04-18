@@ -61,7 +61,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter
                             Item</a></li>
-                    <li><a href="monCompteVendeur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+                    <li><a href="monCompte.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
                 </ul>
             </div>
         </div>
