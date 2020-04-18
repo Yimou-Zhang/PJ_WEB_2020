@@ -9,6 +9,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="pageItem.css" rel="stylesheet" type="text/css" />
+
+    <style>
+    .well {
+    text-align: center;
+    margin-left: 40%;
+    margin-right: 40%;
+    }
+    </style>
 </head>
 
 <body>
@@ -125,21 +133,122 @@
     <!--A MODIFIER EN PHP, mettre des conditions pour le type d'achat-->
     <div class="bouton">
         <a href="accueilAcheteur.php">
-            <button type="button" class="btn btn-primary" onclick="validate()">Acheter directement</button>   <!--si achat immédiat -> Ajouter au panier l'item et le supprimer pour qu'il n'apparaissent plus sur l'accueil et dans les catégories d'achat -->
-            <script> function validate() {alert("Item ajouté au Panier");} </script>
+            <button type="button" class="btn btn-primary" onclick="validate()">Ajouter au Panier</button>   <!--si achat immédiat -> Ajouter au panier l'item et le supprimer pour qu'il n'apparaissent plus sur l'accueil et dans les catégories d'achat -->
+            <script> function validate() {alert("Item ajouté au Panier");} </script>  <!--JavaScript-->
         </a>
         <a href="negociation.php">
-            <button type="button" class="btn btn-primary">Aller à la Négociation</button> <!-- Si item est à négocier, aller à la page negociation.php de l'item -->
+            <button type="button" class="btn btn-primary">Procéder à la Négociation</button> <!-- Si item est à négocier, aller à la page negociation.php de l'item -->
         </a>
         <a href="enchere.php">
-            <button type="button" class="btn btn-primary">Aller à l'Enchère</button>     <!-- Si item est aux enchères, aller à la page enchere.php de l'item -->
+            <button type="button" class="btn btn-primary">Contribuer à l'Enchère de cet Item</button>     <!-- Si item est aux enchères, aller à la page enchere.php de l'item -->
         </a>
     </div>
 
-    <!--Footer-->
+
+    <!--Partie NEGOCIATION-->
+    <!--Eventuellement rajouter une condition que le prix ne soit pas supérieur au prix déjà instauré par le vendeur -->
+
+    <div class="well">
+        <div class="titre">
+            <h4>
+                <p><span class="glyphicon glyphicon-piggy-bank"></span> Prix trop élevé ? </p>
+            </h4>
+        </div>
+        <div style="margin-bottom:50px">
+            <p>Négociez avec le Vendeur ! </p>
+            Pour combien voudriez-vous acheter cet item ?
+            <p>
+            <div class="col-sm-6" style="float:left; margin-left:20%">
+                <input class="form-control" type="number" value="52" name="item">
+            </div>
+                <div class="col-sm-3" style="float:left; margin-top:8px; text-align:left">€</div> <!--Affichage du € -->
+            </p>
+        </div>
+        <button type="button" class="btn btn-success">Proposer ce prix au Vendeur</button>
+        <button type="button" class="btn btn-danger" style="margin-top:5px">Retour</button>  <!--Ici retour à la page pageItem.php normale (sans la négociation apparente) -->
+    </div>
+
+
+    <!--Partie ENCHERE -->
+
+    <div class="well">
+        <div class="titre">
+            <h4>
+                <p><span class="glyphicon glyphicon-equalizer"></span> Enchère de l'Item </p>
+            </h4>
+        </div>
+        <div style="margin-bottom:15px">
+            <p>
+                <!-- Début du compteur -->
+                    <div id="test" 
+                    style="border:1px solid #663300; width:200px; text-align:center; margin: 0px auto; padding:4px; -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px;">&nbsp;</div> <!--PHP-->
+                    <script type="text/JavaScript">
+                    var compt=0;
+                    function monCompteur() {
+                        // délais d'affichage
+                        var delais = 1;
+                        // Element contenant l'affichage
+                        var affichage=document.getElementById("test");
+                        // HTML d'affichage
+                        var html = "Il reste :<br /> <strong><span style=\"font-size:18pt\">[j] j </span></strong><br /><span style=\"font-size:12pt\">[h] h [m] m [s] s </span><br />pour acheter cet Item" ;
+                        // HTML d'affichage si écoulé
+                        var htmlafter = "L'item n'est plus en vente depuis :<br /><strong><span style=\"font-size:18pt\">[j] j </span></strong><br /><span style=\"font-size:12pt\">[h] h [m] m [s] s </span>" ;
+                        var date1 = new Date(); // Date / heure actuelles
+                        var date2 = new Date (2020, 4, 5, 20, 2, 53); // Date / heure de fin (janvier = 2020, 0)
+                        var nbsec = (date2 - date1) / 1000;  // Nombre de secondes entre les dates
+                        var nbsecj = 24 * 3600;  // Nombre de secondes
+                        // Pour arrêter le compteur
+                        var stopcpt=false;
+                        // Si négatif alors temps écoulé
+                        if (nbsec <= 0) {
+                            nbsec=-nbsec;
+                            if (htmlafter!="") 
+                                { html=htmlafter; }
+                            else
+                                {stopcpt=true;}
+                        }
+                        var j = Math.floor (nbsec / nbsecj); // Nombre de jours restants
+                        var h = Math.floor ((nbsec - (j * nbsecj)) / 3600); // Nombre d'heures restantes
+                        var m = Math.floor ((nbsec - ((j * nbsecj + h * 3600))) / 60); // Nombre de minutes restantes
+                        var s = Math.floor (nbsec - ((j * nbsecj + h * 3600 + m * 60))); // Nombre de secondes restantes
+                        // Remise à zéro
+                        if (stopcpt==true) {j=0;h=0;m=0;s=0}
+                        // Modification du HTML à afficher
+                        var html = html.replace("[j]",j);
+                        var html = html.replace("[h]",h);
+                        var html = html.replace("[m]",m);
+                        var html = html.replace("[s]",s);
+                        // Affichage
+                        if (affichage!=null) {affichage.innerHTML = html;}
+                        // Relance du compteur dans x millisecondes
+                        if (stopcpt==false) {compt=setTimeout ("monCompteur();", 1*1000);}
+                    }
+                    monCompteur();
+                    </script>
+                    <!-- Fin du compteur -->
+            </p>
+            <p><strong>Enchère actuelle : </strong></p>
+            <p>Je souhaite surenchérir de
+            <div class="col-sm-6" style="float:left; margin-left:20%">
+                <input class="form-control" type="number" value="52" name="item">
+            </div>
+                <div class="col-sm-3" style="float:left; margin-top:8px; text-align:left">€</div> <!--Affichage du € -->
+            </p>
+            <button type="button" class="btn btn-success" style="margin-top:15px">Surenchérir</button>
+            <button type="button" class="btn btn-danger" style="margin-top:15px">Retour</button>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!--
     <footer class="container-fluid text-center">
         <p>Site designé par Yimou ZHANG, Pascal CHEN et Matthis LARBODIERE</p>
     </footer>
+    -->
 
 </body>
 

@@ -222,4 +222,3 @@ if($_SESSION['fonction'] == 'vendeur'){ //Vendeur
 </body>
 
 </html>
-
