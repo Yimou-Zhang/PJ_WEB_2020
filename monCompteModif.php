@@ -173,37 +173,37 @@ if($_SESSION['fonction'] == 'vendeur'){ //Vendeur
             <div class="form-group row">
                 <label for="nom" class="col-sm-2 col-form-label">Nom</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" placeholder="<?php echo $_SESSION['nom'] ?>" name="nom">
+                    <input class="form-control" type="text" value="<?php echo $_SESSION['nom'] ?>" name="nom">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="prenom" class="col-sm-2 col-form-label">Prénom</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" placeholder="<?php echo $_SESSION['prenom'] ;?>" name="prenom">
+                    <input class="form-control" type="text" value="<?php echo $_SESSION['prenom'] ;?>" name="prenom">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="pseudo" class="col-sm-2 col-form-label">Pseudo</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" placeholder="<?php echo $_SESSION['pseudo'] ;?>" name="pseudo">
+                    <input class="form-control" type="text" value="<?php echo $_SESSION['pseudo'] ;?>" name="pseudo">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="email" placeholder="<?php echo $_SESSION['email'] ?>">
+                    <input type="text" class="form-control" name="email" value="<?php echo $_SESSION['email'] ?>">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="password" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-5">
-                    <input type="password" class="form-control" style="margin-left: 15px;" name="password" placeholder="<?php echo $_SESSION['password']; ?>">
+                    <input type="password" class="form-control" style="margin-left: 15px;" name="password" value="<?php echo $_SESSION['password']; ?>">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="password" class="col-sm-2 col-form-label"><p>Confirmer</p>password</label>
                 <div class="col-sm-5">
-                    <input type="password" class="form-control" style="margin-left: 15px;" name="password" placeholder="<?php echo $_SESSION['password'] ;?>">
+                    <input type="password" class="form-control" style="margin-left: 15px;" name="password" value="<?php echo $_SESSION['password'] ;?>">
                 </div>
             </div>
             <div class="bouton">
