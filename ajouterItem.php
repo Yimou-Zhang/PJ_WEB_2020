@@ -20,7 +20,7 @@
                     }
                     $result = mysqli_query($db_handle, $sql);
                     if (mysqli_num_rows($result) == 0) {
-                        echo "Item non trouvé"; 
+                        echo "Item non trouvée"; 
                     }else {
                         while ($data = mysqli_fetch_assoc($result)){
                             $id = $data['idItem'];
@@ -134,14 +134,15 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Catégories</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="categorieItem.php">Meubles</a><br>
-                            <a class="dropdown-item" href="categorieItem.php">Tableaux</a><br>
-                            <a class="dropdown-item" href="categorieItem.php">Bijouterie</a>
+                            <a class="dropdown-item" href="#">Meubles</a><br>
+                            <a class="dropdown-item" href="#">Tableaux</a><br>
+                            <a class="dropdown-item" href="#">Bijouterie</a>
                         </div>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter/Supprimer Item</a></li>
+                    <li class="active"><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter
+                            Item</a></li>
                     <li><a href="monCompte.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
                 </ul>
             </div>
@@ -158,7 +159,7 @@
     <!-- line 164 a 184 est un copier coller de chez Admin_ajout_supp -->
     <div class="titre">
             <h2>
-            <span class="glyphicon glyphicon-transfer"></span> Ajouter ou Supprimer un Item
+            <span class="glyphicon glyphicon-transfer"></span> Ajouter/Supprimer un Item
             </h2>
         </div>
         
@@ -270,7 +271,7 @@
         <!--Affichage "Liste Vendeurs" en HTML-->
         <div class="titre">
             <h3>
-                <span class="glyphicon glyphicon-list"></span> Liste des Items
+                <span class="glyphicon glyphicon-list"></span> Liste des items
             </h3>
         </div>
 
@@ -302,8 +303,8 @@
                         <p><strong>Description : </strong></p> <?php echo $data['description']; ?>
                     </div>
                     <div class="col-sm-5">
-                        <p><strong>Categorie : </strong></p> <?php echo $data['categorie'] ?>
-                        <p><strong>Prix : </strong></p> <?php echo $data['prix'] ?>
+                        <p><strong>Categorie : </strong></p> <?php echo $data['categorie']; ?>
+                        <p><strong>Prix : </strong></p> <?php echo $data['prix']; ?>
                     </div>
                 </div>
             </div>
