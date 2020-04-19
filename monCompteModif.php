@@ -22,7 +22,13 @@
                 $result = mysqli_query($db_handle, $sql);
 
                 if (mysqli_num_rows($result) != 0) {
-                    echo "Email déjà existante";
+                    ?>
+                            <div class="titre"style="margin-top:20px">
+                                <h5>
+                                    <span class="glyphicon glyphicon-exclamation-sign"></span> Email déjà existant
+                                </h5>
+                            </div>
+                    <?php
                 }else {    
                     $sql = "SELECT * FROM utilisateur";
                     if ($email != "") {
@@ -31,7 +37,13 @@
                     $result = mysqli_query($db_handle, $sql);
 
                     if (mysqli_num_rows($result) == 0) {
-                        echo "Personne non existante";
+                        ?>
+                            <div class="titre"style="margin-top:20px">
+                                <h5>
+                                    <span class="glyphicon glyphicon-exclamation-sign"></span> Personne déjà existante
+                                </h5>
+                            </div>
+                        <?php
                     }else {
                         while($data = mysqli_fetch_assoc($result)){ 
                             $idUt = $data['idUtilisateur']; 
@@ -55,7 +67,10 @@
                 }  
             }
         }else {
-            echo "Champs non rempli";
+            ?>
+                <script>alert("Un champ est vide, tous les champs doivent être remplis");</script>
+
+        <?php
         } 
         header('Location:monCompte.php');
 
