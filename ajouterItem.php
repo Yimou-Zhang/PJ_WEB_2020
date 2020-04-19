@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    $idUtilisateur = $_SESSION['idUser'];
 
     $database = "projet";
     $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
@@ -10,7 +11,6 @@
 /////////////////////////////////Supprimer un item
         if(isset($_POST["oui_supprimer"])){
 
-            $idUtilisateur = $_SESSION['idUser'];
             $nom_Item = isset($_POST["nom_Item"])? $_POST["nom_Item"] : "";
 
             if($nom_Item){ 
@@ -39,7 +39,6 @@
 ////////Ajouter une personne grace a une formulaire
         if(isset($_POST["oui_ajouter"])){
             
-            $idUtilisateur = $_SESSION['idUser'];
             $nom_Item = isset($_POST["nom_Item"])? $_POST["nom_Item"] : "";
             $photos = isset($_FILES["mesphotos"]['name'])? $_FILES["mesphotos"]['name'] : "";
             $video = isset($_POST["mavideo"])? $_POST["mavideo"] : "";
@@ -77,9 +76,7 @@
             }
             
         }
-    }else{
-        echo "Datebase not found";
-    }
+    
         ?>
 
 
@@ -195,9 +192,9 @@
                 <label for="cate" class="col-sm-2 col-form-label">Catégorie</label>
                 <div class="col-sm-10">
                     <select class="form-control" name="cate">
-                        <option selected>Meubles</option>
-                        <option>Tableaux</option>
-                        <option>Bijoux</option>
+                        <option value="Meubles" selected>Meubles</option>
+                        <option value="Tableaux">Tableaux</option>
+                        <option value="Bijoux">Bijoux</option>
                     </select>
                 </div>
             </div>
@@ -266,7 +263,62 @@
     </div>
 <?php
         }
+        $sql = "SELECT * FROM item WHERE idUtilisateur LIKE '%$idUtilisateur%'";
+        
+        $result = mysqli_query($db_handle, $sql);
+        ?> 
+
+        <!--Affichage "Liste Vendeurs" en HTML-->
+        <div class="titre">
+            <h3>
+                <span class="glyphicon glyphicon-list"></span> Liste des items
+            </h3>
+        </div>
+
+        <?php if (mysqli_num_rows($result) == 0) {
 ?>
+<div class="titre"style="margin-top:20px">
+    <h5>
+        <span class="glyphicon glyphicon-exclamation-sign"></span> Aucun Item dans la liste
+    </h5>
+</div>
+
+<!--PHP-->
+<?php
+        ;} else {             
+            echo "<table border='1'>";
+            while($data = mysqli_fetch_assoc($result)){   
+
+?>
+<!--HTML-->
+
+<div class="row">
+            <div class="well" style="width:50%">
+                <div class="row" style="margin-top:0px">
+                    <div class="col-sm-3">
+                        <img src="<?php echo $data['photos']; ?>" class="img-responsive" style="width:100%" alt="Photo de Profil">
+                    </div>
+                    <div class="col-sm-4">
+                        <p><strong>Nom de l'item : </strong></p> <?php echo $data['nom']; ?> <!--Affichage Prénom-->
+                        <p><strong>Description : </strong></p> <?php echo $data['description']; ?>
+                    </div>
+                    <div class="col-sm-5">
+                        <p><strong>Categorie : </strong></p> <?php echo $data['categorie'] ?>
+                        <p><strong>Prix : </strong></p> <?php echo $data['prix'] ?>
+                    </div>
+                </div>
+            </div>
+</div>
+<?php
+}
+            echo "</table>";
+        }
+    }else{
+        echo "Datebase not found";
+    }
+?>
+
+
 
 </body>
 
