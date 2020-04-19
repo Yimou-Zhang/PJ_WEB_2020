@@ -1,3 +1,14 @@
+<?php 
+    session_start();
+
+    $database = "projet";
+    $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '');
+    $db_found = mysqli_select_db($db_handle, $database);
+
+?>
+
+    
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,6 +46,68 @@ function testEmpty() {
 </head>
 
 <body>
+<?php
+        if($db_found){
+        if(isset($_POST["valider_paiement"])){
+            // paiement
+            $idUtilisateur = isset($_POST["idUtilisateur"])? $_POST["idUtilisateur"] : "";
+            $typeCarte = isset($_POST["typeCarte"])? $_POST["typeCarte"] : "";
+            $nomSurCarte = isset($_POST["nomSurCarte"])? $_POST["nomSurCarte"] : "";
+            $dateExpiration = isset($_POST["dateExpiration"]) ? $_POST["dateExpiration"] : "";
+            $codeSecurite = isset($_POST["codeSecurite"])? $_POST["codeSecurite"] : "";
+
+            // livraison
+            $idItem = isset($_POST["idItem"])? $_POST["idItem"] : "";
+            $nomPrenom = isset($_POST["nomPrenom"])? $_POST["nomPrenom"] : "";
+            $adresse = isset($_POST["adresse"])? $_POST["adresse"] : "";
+            $ville = isset($_POST["ville"])? $_POST["ville"] : "";
+            $codePostal = isset($_POST["codePostal"])? $_POST["codePostal"] : "";
+            $pays = isset($_POST["pays"])? $_POST["pays"] : "";
+            $numTelephone = isset($_POST["numTelephone"])? $_POST["numTelephone"] : "";
+
+            if($typeCarte || $nomSurCarte || $dateExpiration || $codeSecurite){
+                $sql = "SELECT * FROM paiement";
+                $result = mysqli_query($db_handle, $sql);
+                if (mysqli_num_rows($result) != 0) { ?>
+                    <div class="titre"style="margin-top:20px">
+                        <h5>
+                            <span class="glyphicon glyphicon-exclamation-sign"></span> L'email rentré n'existe pas
+                        </h5>
+                    </div>
+                <?php 
+                }else{
+                    $sql = "INSERT INTO paiement(idUTilisateur, typeCarte, nomSurCarte, dateExpiration, codeSecurite) VALUES ('$idUtilisateur','$typeCarte','$nomSurCarte','$dateExpiration','$codeSecurite')";
+                    $result = mysqli_query($db_handle, $sql);
+                }
+                }else{ ?>
+                    <script>alert("Un champ est vide, tous les champs doivent être remplis");</script>
+                <?php
+                }
+            }
+
+            if($idItem || $nomPrenom || $adresse || $ville || $codePostal || $pays || $numTelephone){
+                $sql = "SELECT * FROM livraison";
+                $result = mysqli_query($db_handle, $sql);
+                if (mysqli_num_rows($result) != 0) { ?>
+                    <div class="titre"style="margin-top:20px">
+                        <h5>
+                            <span class="glyphicon glyphicon-exclamation-sign"></span> L'email rentré n'existe pas
+                        </h5>
+                    </div>
+                <?php 
+                }else{
+                    $sql = "INSERT INTO paiement(idUTilisateur, typeCarte, nomSurCarte, dateExpiration, codeSecurite) VALUES ('$idUtilisateur','$typeCarte','$nomSurCarte','$dateExpiration','$codeSecurite')";
+                    $result = mysqli_query($db_handle, $sql);
+                }
+                }else{ ?>
+                    <script>alert("Un champ est vide, tous les champs doivent être remplis");</script>
+                <?php
+                }
+            }
+
+        }
+    }
+?>
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid fixed-top">
@@ -170,7 +243,7 @@ function testEmpty() {
             </div>  
             <div style="text-align:center; margin-top:20px">
             <a class="btn btn-success" onclick="validate()" role="button" value="Submit">Valider mes Achats</a>
-            </div>  
+            </div>
         </div>
     </div>
     
