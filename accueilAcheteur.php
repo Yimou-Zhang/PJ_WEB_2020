@@ -1,3 +1,12 @@
+<?php 
+    session_start();
+    $database = "projet";
+    $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
+    $db_found = mysqli_select_db($db_handle, $database);
+
+    if($db_found){
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,6 +64,8 @@
         </div>
     </nav>
 
+<form action="pageItem.php" method="post" class="contain" enctype='multipart/form-data'> <!-- Formulaire qui permet de passer a la pageItem.php-->
+
     <!--Carousel (défilement image)-->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicateurs -->
@@ -64,51 +75,38 @@
             <li data-target="#myCarousel" data-slide-to="2"></li>
             <li data-target="#myCarousel" data-slide-to="3"></li>
         </ol>
-
         <!--Type de slides du carousel-->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <a href="pageItem.php">
                     <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
                     <div class="carousel-caption">
                         <h4>Item à la Une</h4>
                         <p>Prix spéciaux</p>
-                </div>
-                </a>
+                    </div>
             </div>
 
-            <div class="item">
-                <a href="pageItem.php">
-                <img src="https://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
-                <div class="carousel-caption">
+<?php //On affiche les photos des items avec une limite de 3 d'affichage
+    $sql = "SELECT * FROM item LIMIT 3";
+    $result = mysqli_query($db_handle, $sql);
+    if (mysqli_num_rows($result) == 0) {
+        echo "ITEM NON TROUVE ???";
+    } else {             
+        while($data = mysqli_fetch_assoc($result)){ 
+?> 
+            <div class="item"> 
+                <input type="hidden" name="idItem" value="<?php echo $data['idItem']; ?>"> <!-- Champs caché afin d'envoyé l'id de cette item-->
+                <input type="image" src="<?php echo $data['photos']; ?>"  alt="Image">
+                <div class="carousel-caption">  
                     <h3>Item à la Une</h3>
                     <p>Prix spéciaux</p>
                 </div>
-                </a>
             </div>
-
-            <div class="item">
-                <a href="pageItem.php">
-                <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
-                <div class="carousel-caption">
-                    <h3>Item à la Une</h3>
-                    <p>Prix spéciaux</p>
-                </div>
-            </a>
-            </div>
-
-            <div class="item">
-                <a href="pageItem.php">
-                <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
-                <div class="carousel-caption">
-                    <h3>Item à la Une</h3>
-                    <p>Prix spéciaux</p>
-                </div>
-                </a>
-            </div>
-
+<?php
+        }
+    }
+?>            
         </div>
-
+        
         <!-- Changer de page carousel -->
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -124,52 +122,34 @@
     <div class="container text-center">
         <h3>Items proposés</h3><br>
         <div class="row">
+
+<?php //On affiche tous les photos des items 
+    $sql = "SELECT * FROM item";
+    $result = mysqli_query($db_handle, $sql);
+    if (mysqli_num_rows($result) == 0) {
+        echo "ITEM NON TROUVE ???";
+    } else {             
+        while($data = mysqli_fetch_assoc($result)){ 
+?> 
             <div class="col-sm-3">
-                <a href="pageItem.php">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+            <input type="hidden" name="idItem" value="<?php echo $data['idItem']; ?>"> <!-- Champs caché afin d'envoyé l'id de cette item-->
+            <input type="image" src="<?php echo $data['photos']; ?>" class="img-responsive" style="width:100%" alt="Image">
                     <div style="float:left">
                         Nom Item
                     </div>
                     <div style="float:right">
                         Prix
                     </div>
-                </a>
             </div>
-            <div class="col-sm-3">
-                <a href="pageItem.php">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <div style="float:left">
-                        Nom Item
-                    </div>
-                    <div style="float:right">
-                        Prix
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-3">
-                <a href="pageItem.php">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <div style="float:left">
-                        Nom Item
-                    </div>
-                    <div style="float:right">
-                        Prix
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-3">
-                <a href="pageItem.php">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <div style="float:left">
-                        Nom Item
-                    </div>
-                    <div style="float:right">
-                        Prix
-                    </div>
-                </a>
-            </div>
+<?php
+        }
+    }
+}
+?> 
+
         </div>
-    </div><br>
+    </div><br> 
+</form> <!-- Fin du formulaire pour envoyer les informations à la pageItem.php -->
 
     <!--Footer-->
     <footer class="container-fluid text-center">

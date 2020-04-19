@@ -1,3 +1,31 @@
+<?php 
+    session_start();
+
+    $database = "projet";
+    $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
+    $db_found = mysqli_select_db($db_handle, $database);
+    $idItem = isset($_POST["idItem"])? $_POST["idItem"] : "";
+
+if($db_found){
+    $sql = "SELECT * FROM item WHERE idItem LIKE '%$idItem%'";
+    $result = mysqli_query($db_handle, $sql);
+    if (mysqli_num_rows($result) == 0) {
+        echo "ITEM NON TROUVE ???";
+    } else {             
+        while($data = mysqli_fetch_assoc($result)){ 
+            $nom = $data['nom'];
+            $photo = $data['photos'];
+            $type_vente = $data['estVenteImmediate'];
+            $type2_vente = $data['vente'];
+            $categorie = $data['categorie'];
+            $description = $data['description'];
+            $prix = $data['prix'];
+        }
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,12 +104,13 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <img src="https://placehold.it/800x400?text=IMAGE" alt="Image">
+                            <img src="<?php echo $photo;?>" alt="Image">
                         </div>
 
-                        <div class="item">
+                        <!-- Nous n'avons qu'un image donc voilà
+                            <div class="item"> 
                             <img src="https://placehold.it/800x400?text=Another Image Maybe" alt="Image">
-                        </div>
+                        </div>-->
 
                         <div class="item">
                             <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item"
@@ -102,7 +131,7 @@
                 </div>
                 <!--Affichage prix-->
                 <div> <strong>
-                        <p class="text" style="margin-top: 5px; text-align: center;"> Prix = 32€</p>
+                        <p class="text" style="margin-top: 5px; text-align: center;"> Prix = <?php echo $prix; ?>€</p> 
                     </strong>
                 </div>
             </div>
@@ -113,18 +142,13 @@
             <!--Zone de texte-->
             <div class="col-sm-4">
                 <div class="areatext" style="margin-top: 50px;">
-                    <h4><p><strong>Nom de l'objet : </strong> Meuble ancien Louis XIV</p></h4>
+                    <h4><p><strong>Nom de l'objet : </strong><?php echo $nom; ?></p></h4>
                 </div>
                 <div class="areatext" style="margin-top: 40px;">
-                    <p><strong>Catégorie de l'objet : </strong> Meuble</p>
+                    <p><strong>Catégorie de l'objet : </strong><?php echo $categorie; ?></p>
                 </div>
                 <div class="areatext" style="margin-top: 40px;">
-                    <p><strong>Descriptions : </strong> Et quoniam apud eos ut in capite mundi morborum acerbitates
-                        celsius dominantur, ad quos vel sedandos omnis professio medendi torpescit, excogitatum est
-                        adminiculum sospitale nequi amicum perferentem similia videat, additumque est cautionibus paucis
-                        remedium aliud satis validum, ut famulos percontatum missos quem ad modum valeant noti hac
-                        aegritudine colligati, non ante recipiant domum quam lavacro purgaverint corpus. ita etiam
-                        alienis oculis visa metuitur labes.</p>
+                    <p><strong>Descriptions : </strong> <?php echo $description; ?></p>
                 </div>
             </div>
         </div>
@@ -239,7 +263,9 @@
         </div>
     </div>
 
-
+<?php
+}
+?>
 
 
 
