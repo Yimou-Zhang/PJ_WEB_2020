@@ -77,7 +77,7 @@
     
     <!--Formulaire-->
     <div class="well">
-        <form action="testing2.php" method="post"  enctype='multipart/form-data' >
+        <form action="connect_inscrip_back.php" method="post"  enctype='multipart/form-data' >
             <div class="form-group row" style="margin-top:20px">
                 <label for="pseudo" class="col-sm-3 col-form-label">Pseudo</label>
                 <div class="col-sm-9">
@@ -114,7 +114,7 @@
                 </div>
             </div>
             <div class="bouton" style="text-align:center">
-                <a class="btn btn-primary" role="button" name="inscrire"><strong>S'inscire</strong></a>
+                <input type="submit" class="btn btn-primary" name="inscrire" value="Inscrire">
             </div>
         </form>
     </div>
