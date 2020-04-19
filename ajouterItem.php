@@ -27,7 +27,7 @@
                             </h5>
                         </div>
                     <?php
-                    }else {
+                    }else{
                         while ($data = mysqli_fetch_assoc($result)){
                             $id = $data['idItem'];
                         }
