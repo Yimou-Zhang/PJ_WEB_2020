@@ -4,7 +4,8 @@
     $database = "projet";
     $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
     $db_found = mysqli_select_db($db_handle, $database);
-    $idItem = isset($_POST["idItem"])? $_POST["idItem"] : "";
+    $idItem = isset($_GET['idItem'])? $_GET["idItem"] : "";
+    $idUser = $_SESSION['idUser'];
 
 if($db_found){
     $sql = "SELECT * FROM item WHERE idItem LIKE '%$idItem%'";
@@ -22,6 +23,7 @@ if($db_found){
             $prix = $data['prix'];
         }
     }
+}
 
 ?>
 
@@ -155,18 +157,49 @@ if($db_found){
     </div>
 
     <!--A MODIFIER EN PHP, mettre des conditions pour le type d'achat-->
-    <div class="bouton">
-        <a href="accueilAcheteur.php">
-            <button type="button" class="btn btn-primary" onclick="validate()">Ajouter au Panier</button>   <!--si achat immédiat -> Ajouter au panier l'item et le supprimer pour qu'il n'apparaissent plus sur l'accueil et dans les catégories d'achat -->
-            <script> function validate() {alert("Item ajouté au Panier");} </script>  <!--JavaScript-->
-        </a>
-        <a href="negociation.php">
-            <button type="button" class="btn btn-primary">Procéder à la Négociation</button> <!-- Si item est à négocier, aller à la page negociation.php de l'item -->
-        </a>
-        <a href="enchere.php">
-            <button type="button" class="btn btn-primary">Contribuer à l'Enchère de cet Item</button>     <!-- Si item est aux enchères, aller à la page enchere.php de l'item -->
-        </a>
+    <div class="bouton">  
+<?php 
+    if($type_vente == "vente_immediat"){
+?>
+        <form action="pageItem.php?idItem=<?php echo $idItem; ?>" method="post" class="contain" enctype='multipart/form-data'>
+        <input type="submit" name="ajoute_panier" value ="Ajouter au Panier" class="btn btn-primary" onclick="validate()"> 
+        <script> function validate() {alert("Item ajouté au Panier");} </script>  <!--JavaScript-->
+
+        </form>
+<!--si achat immédiat -> Ajouter au panier l'item et le supprimer pour qu'il n'apparaissent plus sur l'accueil et dans les catégories d'achat -->
+<?php 
+    }
+    if(isset($_POST["ajoute_panier"])){
+        $idItem = isset($_GET['idItem'])? $_GET["idItem"] : "";
+
+        $sql = "SELECT * FROM panier";
+        if ($idUser != "") {
+            $sql .= " WHERE idUtilisateur LIKE '%$idUser%'";
+            if($idItem != ""){
+                $sql .= " AND idsItem LIKE '%$idItem%'";
+            }
+        }
+        $result = mysqli_query($db_handle, $sql);
+        if (mysqli_num_rows($result) != 0) {
+            echo "ITEM DEJA DANS VOTRE PANIER ???";
+        }else {
+            $sql = "INSERT INTO panier(idUtilisateur, idsItem) VALUES ('$idUser','$idItem')";
+            $result = mysqli_query($db_handle, $sql);
+        }
+    }
+    if($type2_vente == "enchere"){
+?>
+        <button type="button" class="btn btn-primary">Procéder à la Négociation</button> <!-- Si item est à négocier, aller à la page negociation.php de l'item -->
+<?php 
+    }
+    if($type2_vente == "meilleurOffre"){
+?>    
+        <button type="button" class="btn btn-primary">Contribuer à l'Enchère de cet Item</button>     <!-- Si item est aux enchères, aller à la page enchere.php de l'item -->
+<?php 
+    }
+?>  
     </div>
+    
 
 
     <!--Partie NEGOCIATION-->
@@ -262,13 +295,6 @@ if($db_found){
             <button type="button" class="btn btn-danger" style="margin-top:15px">Retour</button>
         </div>
     </div>
-
-<?php
-}
-?>
-
-
-
 
     <!--
     <footer class="container-fluid text-center">

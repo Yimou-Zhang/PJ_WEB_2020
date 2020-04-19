@@ -64,8 +64,6 @@
         </div>
     </nav>
 
-<form action="pageItem.php" method="post" class="contain" enctype='multipart/form-data'> <!-- Formulaire qui permet de passer a la pageItem.php-->
-
     <!--Carousel (défilement image)-->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicateurs -->
@@ -92,10 +90,10 @@
         echo "ITEM NON TROUVE ???";
     } else {             
         while($data = mysqli_fetch_assoc($result)){ 
+            $idItem = $data['idItem'];
 ?> 
             <div class="item"> 
-                <input type="hidden" name="idItem" value="<?php echo $data['idItem']; ?>"> <!-- Champs caché afin d'envoyé l'id de cette item-->
-                <input type="image" src="<?php echo $data['photos']; ?>"  alt="Image">
+            <a href='pageItem.php?idItem=<?php echo $idItem; ?>'><img src="<?php echo $data['photos']; ?>" class="img-responsive" style="width:100%" alt="Image" ></a>
                 <div class="carousel-caption">  
                     <h3>Item à la Une</h3>
                     <p>Prix spéciaux</p>
@@ -130,10 +128,11 @@
         echo "ITEM NON TROUVE ???";
     } else {             
         while($data = mysqli_fetch_assoc($result)){ 
+            $idItem = $data['idItem'];
 ?> 
             <div class="col-sm-3">
-            <input type="hidden" name="idItem" value="<?php echo $data['idItem']; ?>"> <!-- Champs caché afin d'envoyé l'id de cette item-->
-            <input type="image" src="<?php echo $data['photos']; ?>" class="img-responsive" style="width:100%" alt="Image">
+            <a href='pageItem.php?idItem=<?php echo $idItem; ?>'><img src="<?php echo $data['photos']; ?>" class="img-responsive" style="width:100%" alt="Image" ></a>
+            <?php echo $idItem; ?>
                     <div style="float:left">
                         Nom Item
                     </div>
@@ -149,7 +148,6 @@
 
         </div>
     </div><br> 
-</form> <!-- Fin du formulaire pour envoyer les informations à la pageItem.php -->
 
     <!--Footer-->
     <footer class="container-fluid text-center">
