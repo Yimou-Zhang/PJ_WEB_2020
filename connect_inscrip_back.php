@@ -30,6 +30,7 @@
             }else {
                 $sql = "INSERT INTO utilisateur(nom, Prenom, email, motDePasse, pseudo, photoProfil, type) VALUES ('$nom','$prenom','$email','$password','$pseudo','$photo','$fonction')";
                 $result = mysqli_query($db_handle, $sql);//Il permet d'enregistrer//
+                header('Location: connexion.php');
             }
         } else {
             echo "Database not found";
