@@ -62,10 +62,10 @@
 
     <!--Bouton s'identifier vendeur et se déconnecter-->
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
-        <a class="btn btn-danger" href="testing1.php" role="button">Se déconnecter</a>
+        <a class="btn btn-danger" href="inscription.php" role="button">Se déconnecter</a>
     </div>
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
-        <a class="btn btn-primary" href="testing1.php" role="button">S'identifier en tant que vendeur</a>
+        <a class="btn btn-primary" href="inscription.php" role="button">S'identifier en tant que vendeur</a>
     </div>
     
     <!--PHP fin de la condition-->
@@ -108,11 +108,11 @@
 
     <!--Boutons se déconnecter et s'identifier vendeur-->
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
-        <a class="btn btn-danger" href="testing1.php" role="button">Se déconnecter</a>
+        <a class="btn btn-danger" href="inscription.php" role="button">Se déconnecter</a>
     </div>
     
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
-        <a class="btn btn-primary" href="testing1.php" role="button">S'identifier en tant qu'acheteur</a>
+        <a class="btn btn-primary" href="inscription.php" role="button">S'identifier en tant qu'acheteur</a>
     </div>
 
     <?php
