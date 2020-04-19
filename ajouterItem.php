@@ -20,8 +20,14 @@
                     }
                     $result = mysqli_query($db_handle, $sql);
                     if (mysqli_num_rows($result) == 0) {
-                        echo "Item non trouvée"; 
-                    }else {
+                    ?>
+                        <div class="titre"style="margin-top:20px">
+                            <h5>
+                                <span class="glyphicon glyphicon-exclamation-sign">L'item n'existe pas. Réessayez</span> 
+                            </h5>
+                        </div>
+                    <?php
+                    }else{
                         while ($data = mysqli_fetch_assoc($result)){
                             $id = $data['idItem'];
                         }
@@ -30,7 +36,13 @@
                         $result = mysqli_query($db_handle, $sql); 
                     }
             } else {
-                    echo "Champ non rempli";
+                ?>
+                    <div class="titre"style="margin-top:20px">
+                        <h5>
+                            <span class="glyphicon glyphicon-exclamation-sign"> L'item n'existe pas. Réessayez </span>
+                        </h5>
+                    </div>
+                <?php
             }
         
         }
@@ -68,8 +80,11 @@
                 }
                 $result = mysqli_query($db_handle, $sql);
                 if (mysqli_num_rows($result) != 0) {
-                    echo "Deja existant";
-                }else {
+                    ?>
+                        <script>alert("Au moins un champ est vide, tous les champs doivent être remplis (Vidéo optionnelle");</script>
+                    <?php
+                }
+                else {
                     $sql = "INSERT INTO item(idUtilisateur, nom, photos, video, vente, estVenteImmediate, categorie, description, prix) VALUES ('$idUtilisateur','$nom_Item','$photos','$video','$type2_vente','$type_vente','$categorie','$description','$prix')";
                     $result = mysqli_query($db_handle, $sql);//On enregistre
                 }
@@ -134,15 +149,14 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Catégories</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Meubles</a><br>
-                            <a class="dropdown-item" href="#">Tableaux</a><br>
-                            <a class="dropdown-item" href="#">Bijouterie</a>
+                            <a class="dropdown-item" href="categorieItem.php">Meubles</a><br>
+                            <a class="dropdown-item" href="categorieItem.php">Tableaux</a><br>
+                            <a class="dropdown-item" href="categorieItem.php">Bijouterie</a>
                         </div>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter
-                            Item</a></li>
+                    <li class="active"><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter/Supprimer Item</a></li>
                     <li><a href="monCompte.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
                 </ul>
             </div>
@@ -159,7 +173,7 @@
     <!-- line 164 a 184 est un copier coller de chez Admin_ajout_supp -->
     <div class="titre">
             <h2>
-            <span class="glyphicon glyphicon-transfer"></span> Ajouter/Supprimer un Item
+            <span class="glyphicon glyphicon-transfer"></span> Ajouter ou Supprimer un Item
             </h2>
         </div>
         
@@ -255,7 +269,9 @@
                     <input class="form-control" type="text"  name="nom_Item">
                 </div>
             </div>
-           
+            <div class="col-sm-6" style="text-align:center">
+                <input type="submit" class="btn btn-light" name="oui" value="Retour" style="border:solid">
+            </div>
             <div class="bouton">
                 <input type="submit" class="btn btn-success" onclick="validate()" role="button" value="Supprimer l'Item" name="oui_supprimer">
             </div>
@@ -271,7 +287,7 @@
         <!--Affichage "Liste Vendeurs" en HTML-->
         <div class="titre">
             <h3>
-                <span class="glyphicon glyphicon-list"></span> Liste des items
+                <span class="glyphicon glyphicon-list"></span> Liste des Items
             </h3>
         </div>
 
@@ -303,8 +319,8 @@
                         <p><strong>Description : </strong></p> <?php echo $data['description']; ?>
                     </div>
                     <div class="col-sm-5">
-                        <p><strong>Categorie : </strong></p> <?php echo $data['categorie']; ?>
-                        <p><strong>Prix : </strong></p> <?php echo $data['prix']; ?>
+                        <p><strong>Categorie : </strong></p> <?php echo $data['categorie'] ?>
+                        <p><strong>Prix : </strong></p> <?php echo $data['prix'] ?>
                     </div>
                 </div>
             </div>
