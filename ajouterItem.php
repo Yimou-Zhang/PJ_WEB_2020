@@ -20,7 +20,13 @@
                     }
                     $result = mysqli_query($db_handle, $sql);
                     if (mysqli_num_rows($result) == 0) {
-                        echo "Item non trouvé"; 
+                    ?>
+                        <div class="titre"style="margin-top:20px">
+                            <h5>
+                                <span class="glyphicon glyphicon-exclamation-sign">L'item n'existe pas. Réessayez</span> 
+                            </h5>
+                        </div>
+                    <?php
                     }else {
                         while ($data = mysqli_fetch_assoc($result)){
                             $id = $data['idItem'];
@@ -30,7 +36,13 @@
                         $result = mysqli_query($db_handle, $sql); 
                     }
             } else {
-                    echo "Champ non rempli";
+                ?>
+                    <div class="titre"style="margin-top:20px">
+                        <h5>
+                            <span class="glyphicon glyphicon-exclamation-sign"> L'item n'existe pas. Réessayez </span>
+                        </h5>
+                    </div>
+                <?php
             }
         
         }
@@ -68,8 +80,11 @@
                 }
                 $result = mysqli_query($db_handle, $sql);
                 if (mysqli_num_rows($result) != 0) {
-                    echo "Deja existant";
-                }else {
+                    ?>
+                        <script>alert("Au moins un champ est vide, tous les champs doivent être remplis (Vidéo optionnelle");</script>
+                    <?php
+                }
+                else {
                     $sql = "INSERT INTO item(idUtilisateur, nom, photos, video, vente, estVenteImmediate, categorie, description, prix) VALUES ('$idUtilisateur','$nom_Item','$photos','$video','$type2_vente','$type_vente','$categorie','$description','$prix')";
                     $result = mysqli_query($db_handle, $sql);//On enregistre
                 }
@@ -254,7 +269,9 @@
                     <input class="form-control" type="text"  name="nom_Item">
                 </div>
             </div>
-           
+            <div class="col-sm-6" style="text-align:center">
+                <input type="submit" class="btn btn-light" name="oui" value="Retour" style="border:solid">
+            </div>
             <div class="bouton">
                 <input type="submit" class="btn btn-success" onclick="validate()" role="button" value="Supprimer l'Item" name="oui_supprimer">
             </div>

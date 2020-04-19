@@ -130,7 +130,7 @@ session_start();
             if (mysqli_num_rows($result) != 0) { ?>
             <div class="titre"style="margin-top:20px">
                 <h5>
-                    <span class="glyphicon glyphicon-exclamation-sign"></span> L'email rentré n'existe pas
+                    <span class="glyphicon glyphicon-exclamation-sign"></span> L'email rentré existe déjà. Veuillez ajouter un nouvel email
                 </h5>
             </div>
             <?php
