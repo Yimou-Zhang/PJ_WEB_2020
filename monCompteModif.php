@@ -146,14 +146,14 @@ if($_SESSION['fonction'] == 'vendeur'){ //Vendeur
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Catégories</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Meubles</a><br>
-                            <a class="dropdown-item" href="#">Tableaux</a><br>
-                            <a class="dropdown-item" href="#">Bijouterie</a>
+                            <a class="dropdown-item" href="categorieItem.php">Meubles</a><br>
+                            <a class="dropdown-item" href="categorieItem.php">Tableaux</a><br>
+                            <a class="dropdown-item" href="categorieItem.php">Bijouterie</a>
                         </div>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter Item</a></li>
+                    <li><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter/Supprimer Item</a></li>
                     <li><a href="monCompteVendeur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
                 </ul>
             </div>
