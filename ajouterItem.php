@@ -20,7 +20,7 @@
                     }
                     $result = mysqli_query($db_handle, $sql);
                     if (mysqli_num_rows($result) == 0) {
-                        echo "Item non trouvée"; 
+                        echo "Item non trouvé"; 
                     }else {
                         while ($data = mysqli_fetch_assoc($result)){
                             $id = $data['idItem'];
@@ -271,7 +271,7 @@
         <!--Affichage "Liste Vendeurs" en HTML-->
         <div class="titre">
             <h3>
-                <span class="glyphicon glyphicon-list"></span> Liste des items
+                <span class="glyphicon glyphicon-list"></span> Liste des Items
             </h3>
         </div>
 
