@@ -14,6 +14,7 @@
     }
 
     if(isset($_POST["inscrire"])){ //Ajouter un nouveau utilisateur
+        if($nom||$prenom||$email||$password||$pseudo||$photo||$fonction){
         $database = "projet";
 
         $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
@@ -26,7 +27,7 @@
             }
             $result = mysqli_query($db_handle, $sql);
             if (mysqli_num_rows($result) != 0) {
-                header('Location: testing1.php');
+                header('Location: inscription.php');
             }else {
                 $sql = "INSERT INTO utilisateur(nom, Prenom, email, motDePasse, pseudo, photoProfil, type) VALUES ('$nom','$prenom','$email','$password','$pseudo','$photo','$fonction')";
                 $result = mysqli_query($db_handle, $sql);//Il permet d'enregistrer//
@@ -35,10 +36,13 @@
         } else {
             echo "Database not found";
         }
+        }else{
+            header('Location: inscription.php')
+        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     if(isset($_POST["se_connecter"])){
-
+        if($email||$password){
         $database = "projet";
 
         $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
@@ -77,11 +81,14 @@
                 }
                 }
             }
-            
         }
         else{
             echo "Database not found";
         }
+    }
+    }else {
+        echo "Champ non rempli";
+        header('Location: connexion.php')
     }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>
 

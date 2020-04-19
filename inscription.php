@@ -79,17 +79,30 @@
     <div class="well">
         <form action="connect_inscrip_back.php" method="post"  enctype='multipart/form-data' >
             <div class="form-group row" style="margin-top:20px">
-                <label for="pseudo" class="col-sm-3 col-form-label">Pseudo</label>
+                <label for="pseudo" class="col-sm-3 col-form-label">Nom</label>
                 <div class="col-sm-9">
-                    <input class="form-control" type="text" id="pseudo" name="pseudo">
+                    <input class="form-control" type="text" id="pseudo" name="nom">
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row" style="margin-top:20px">
+                <label for="pseudo" class="col-sm-3 col-form-label">Prenom</label>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" id="pseudo" name="prenom">
+                </div>
+            </div>
+            <div class="form-group row" style="margin-top:20px">
                 <label for="email" class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
                     <input class="form-control" type="text"  id="email" name="email" >
                 </div>
             </div>
+            <div class="form-group row"style="margin-top:20px" >
+                <label for="pseudo" class="col-sm-3 col-form-label">Pseudo</label>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" id="pseudo" name="pseudo">
+                </div>
+            </div>
+            
             <div class="form-group row">
                 <label for="fonction" class="col-sm-3 col-form-label">Fonction</label>
                 <div class="col-sm-9">
