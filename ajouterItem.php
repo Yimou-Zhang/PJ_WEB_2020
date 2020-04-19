@@ -33,6 +33,88 @@
 </head>
 
 <body>
+<?php
+
+session_start();
+
+
+    $database = "projet";
+    $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
+    $db_found = mysqli_select_db($db_handle, $database);
+
+    if($db_found){
+/////////////////////////////////Supprimer une personne
+        if(isset($_POST["oui_supprime"])){
+            $idItem = isset($_POST["idItem"])? $_POST["idItem"] : "";
+
+            if($idItem){ 
+            $sql = 0;
+            if ($idItem != "") {
+                $sql = "SELECT * FROM item WHERE idItem = $idItem"; // c pas la bonne requete , jsp quoi mettre
+            }
+            $result = mysqli_query($db_handle, $sql);
+            if (mysqli_num_rows($result) == 0) {
+            ?>
+            <div class="titre"style="margin-top:20px">
+                <h5>
+                    <span class="glyphicon glyphicon-exclamation-sign"></span> L'id rentré n'existe pas
+                </h5>
+            </div>
+            <?php
+            }else {
+                while ($data = mysqli_fetch_assoc($result) ) {
+                    $id = $data['idItem'];
+                }
+                $sql = "DELETE FROM item ";
+                $sql .= " WHERE idItem = $id";
+                $result = mysqli_query($db_handle, $sql); 
+            }
+            } else {
+            ?>
+            <div class="titre"style="margin-top:20px">
+                <h5>
+                    <span class="glyphicon glyphicon-exclamation-sign"></span> L'id rentré n'existe pas
+                </h5>
+            </div>
+            <?php
+            }
+
+        }
+////////Ajouter une personne grace a une formulaire
+        if(isset($_POST["oui_ajoute"])){
+            $idUtilisateur = isset($_POST["idUtilisateur"])? $_POST["idUtilisateur"] : "";
+            $nom = isset($_POST["nom"])? $_POST["nom"] : "";
+            $photos = isset($_FILES["photo"]['name'])? $_FILES["photo"]['name'] : "";
+            $video = isset($_POST["video"])? $_POST["video"] : "";
+            $vente = isset($_POST["vente"])? $_POST["vente"] : "";
+            $estVenteImmediate = isset($_POST["estVenteImmediate"]) ? $_POST["estVenteImmediate"] : "";
+            $categorie = isset($_POST["fonction"]) ? $_POST["fonction"] : "";
+            $description = isset($_POST["description"]) ? $_POST["description"]  :"";
+            $prix = isset($_POST["prix"]) ? $_POST["prix"]: "";
+
+            if($idUtilisateur || $nom || $photos || $video || $vente || $estVenteImmediate || $categorie || $description || $prix ){
+            $sql = "SELECT * FROM item";  
+            if ($email != "") {   // jsp quoi metre ici a la pplace de email
+                $sql .= " WHERE email LIKE '%$email%'";
+            }
+            $result = mysqli_query($db_handle, $sql);
+            if (mysqli_num_rows($result) != 0) { ?>
+            <div class="titre"style="margin-top:20px">
+                <h5>
+                    <span class="glyphicon glyphicon-exclamation-sign"></span> L'email rentré n'existe pas
+                </h5>
+            </div>
+            <?php
+            }else {
+                $sql = "INSERT INTO item(idUtilisateur, nom, photos, video, vente, estVenteImmediate, categorie, description, prix) VALUES ('$idUtilisateur','$nom','$photos','$video','$vente','$estVenteImmediate','$categorie','$description','$prix')";
+                $result = mysqli_query($db_handle, $sql);//On enregistre
+            }
+            }else { ?>
+                <script>alert("Un champ est vide, tous les champs doivent être remplis");</script>
+
+        <?php    }
+        }
+        ?>
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid fixed-top">
@@ -74,7 +156,7 @@
     </div>
 
     <div class="well">
-        <form>
+        <form action="ajouteritem.php" method="post" class="contain" enctype='multipart/form-data'>
             <div class="form-group row">
                 <label for="nom" class="col-sm-2 col-form-label">Nom de l'Item</label>
                 <div class="col-sm-10">
@@ -133,7 +215,7 @@
             </div>
 
             <div class="bouton">
-                <a class="btn btn-success" onclick="validate()" role="button" value="Submit">Ajouter l'Item</a>
+                <a class="btn btn-success" onclick="validate()" role="button" value="Submit" name="oui_ajouter">Ajouter l'Item</a>
             </div>
         </form>
     </div>
