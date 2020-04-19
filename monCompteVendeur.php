@@ -49,7 +49,11 @@
         </div>
     </nav>
 
-    <!--Bouton s'identifier vendeur-->
+    <!--Boutons se déconnecter et s'identifier vendeur-->
+    <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
+        <a class="btn btn-danger" href="testing1.php" role="button">Se déconnecter</a>
+    </div>
+    
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
         <a class="btn btn-primary" href="testing1.php" role="button">S'identifier en tant qu'acheteur</a>
     </div>

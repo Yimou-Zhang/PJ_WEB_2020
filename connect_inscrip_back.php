@@ -9,8 +9,8 @@
     $photo = isset($_FILES["photo"]['name'])? $_FILES["photo"]['name'] : "";//Utilisation de $_FILES : pour copier un fichier image
     $fonction = isset($_POST["fonction"])? $_POST["fonction"] : "";
 
-    if(isset($_POST["button2"])){
-        header('Location: testing1.php');
+    if(isset($_POST["s_inscrire"])){//Dirige vers le formulaire d'inscription
+        header('Location: inscription.php');
     }
 
     if(isset($_POST["inscrire"])){ //Ajouter un nouveau utilisateur
@@ -30,13 +30,14 @@
             }else {
                 $sql = "INSERT INTO utilisateur(nom, Prenom, email, motDePasse, pseudo, photoProfil, type) VALUES ('$nom','$prenom','$email','$password','$pseudo','$photo','$fonction')";
                 $result = mysqli_query($db_handle, $sql);//Il permet d'enregistrer//
+                header('Location: connexion.php');
             }
         } else {
             echo "Database not found";
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    if(isset($_POST["button1"])){
+    if(isset($_POST["se_connecter"])){
 
         $database = "projet";
 
@@ -66,10 +67,10 @@
                 $_SESSION['password'] = $data['motDePasse'];
 
                 if($data['type'] == 'acheteur') {
-                    header('Location: monCompte.php');//Vers l'accueil de l'acheteur
+                    header('Location: accueilAcheteur.php');//Vers l'accueil de l'acheteur
                 }
                 if($data['type'] == 'vendeur') {
-                    header('Location: xxxx.html'); //Vers l'accueil du vendeur
+                    header('Location: accueilVendeur.php'); //Vers l'accueil du vendeur
                 }
                 if($data['type'] == 'administrateur') {
                     header('Location: xxxx.html'); //Vers l'accueil de l'administateur

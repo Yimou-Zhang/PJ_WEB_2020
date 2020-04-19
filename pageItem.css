@@ -40,6 +40,14 @@ body {
 .bouton {
     margin:auto;
     display: block;
-    margin-top: 100px;
+    margin-top: 80px;
     text-align: center;
 }
+
+.well {
+    text-align: center;
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-top:5%;
+}
+

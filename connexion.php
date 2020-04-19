@@ -65,7 +65,7 @@
     
     <!--Formulaire-->
     <div class="well" style="margin-top:5%">
-        <form action="testing2.php" method="post" class="contain">
+        <form action="connect_inscrip_back.php" method="post" class="contain">
             <div class="form-group row" style="margin-top:20px">
                 <label for="email" class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
@@ -78,8 +78,11 @@
                     <input class="form-control" type="password"  id="password" name="password" >
                 </div>
             </div>
-            <div class="bouton" style="text-align:center">
-                <a class="btn btn-primary" role="button" name="inscrire"><strong>Se connecter</strong></a>
+            <div class="bouton" style="text-align:center" >
+                <input type="submit" class="btn btn-primary" name="se_connecter" value="Se connecter">
+            </div>
+            <div class="bouton" style="text-align:center" >
+                <input  type="submit" class="btn btn-primary" name="s_inscrire" value="S'inscrire">
             </div>
         </form>
     </div>
