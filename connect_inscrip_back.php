@@ -62,6 +62,7 @@
                 header('Location: connexion.html');
             } else {
                 while($data = mysqli_fetch_assoc($result)){ 
+                $_SESSION['idUser']=$data['idUtilisateur'];
                 $_SESSION['nom'] = $data['nom'];
                 $_SESSION['prenom'] = $data['prenom'];   
                 $_SESSION['email'] = $data['email'];
