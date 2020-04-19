@@ -8,7 +8,7 @@
 
     if($db_found){
 /////////////////////////////////Supprimer un item
-        if(isset($_POST["oui_supprime"])){
+        if(isset($_POST["oui_supprimer"])){
 
             $idUtilisateur = $_SESSION['idUser'];
             $nom_Item = isset($_POST["nom_Item"])? $_POST["nom_Item"] : "";
@@ -119,8 +119,6 @@
 
 <body>
 
-
-
     <nav class="navbar navbar-inverse">
         <div class="container-fluid fixed-top">
             <div class="navbar-header">
@@ -154,12 +152,37 @@
         </div>
     </nav>
 
-    <div class="titre">
+   <!-- Pour MATTHIS TU PEUX MODIFIER ICI; line 158-162 c'est ton HTML de la base de cette page
+   <div class="titre">
         <h2>
-            <span class="glyphicon glyphicon-ok-circle"></span> Ajouter un Item
+            <span class="glyphicon glyphicon-ok-circle"></span> Ajouter/Supprimer un Item
         </h2>
-    </div>
+    </div> -->
 
+    <!-- line 164 a 184 est un copier coller de chez Admin_ajout_supp -->
+    <div class="titre">
+            <h2>
+            <span class="glyphicon glyphicon-transfer"></span> Ajouter/Supprimer un Item
+            </h2>
+        </div>
+        
+        <!--Formulaire HTML-->
+        <div class="test" style="margin-top:4%">
+        <form action="ajouteritem.php" method="post" class="contain" enctype='multipart/form-data'>
+                <div class="form-group row" style="margin-top:10px">
+                    <div class="col-sm-6" style="text-align:center">
+                        <button type="submit" class="btn btn-danger" name="supprime">Supprimer</button>
+                    </div>
+                    <div class="col-sm-6" style="text-align:center">
+                        <button type="submit" class="btn btn-success" name="ajoute">&nbsp&nbspAjouter&nbsp&nbsp</button> <!--&nbsp conserve les espaces (pour que le bouton soit de la meme forme que Suppr-->
+                    </div>
+                </div>
+                
+            </form>
+        </div> <!-- OUI JUSQUE ICI-->
+<?php 
+        if(isset($_POST["ajoute"])){ 
+?>
     <div class="well">
         <form action="ajouteritem.php" method="post" class="contain" enctype='multipart/form-data'>
             <div class="form-group row">
@@ -223,6 +246,27 @@
             </div>
         </form>
     </div>
+<?php
+        }
+        if(isset($_POST["supprime"])){///////MATTHIS TU PEUX MODIFIER ICI AUSSI
+?>
+    <div class="well">
+        <form action="ajouteritem.php" method="post" class="contain" enctype='multipart/form-data'>
+            <div class="form-group row">
+                <label for="nomçItem" class="col-sm-2 col-form-label">Nom de l'Item</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text"  name="nom_Item">
+                </div>
+            </div>
+           
+            <div class="bouton">
+                <input type="submit" class="btn btn-success" onclick="validate()" role="button" value="Supprimer l'Item" name="oui_supprimer">
+            </div>
+        </form>
+    </div>
+<?php
+        }
+?>
 
 </body>
 
