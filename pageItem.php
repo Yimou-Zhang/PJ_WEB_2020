@@ -181,7 +181,9 @@ if($db_found){
         }
         $result = mysqli_query($db_handle, $sql);
         if (mysqli_num_rows($result) != 0) {
-            echo "ITEM DEJA DANS VOTRE PANIER ???";
+            ?>
+             <script> function validate() {alert("Item deja dans le panier");} </script>  <!--JavaScript-->
+            <?php 
         }else {
             $sql = "INSERT INTO panier(idUtilisateur, idsItem) VALUES ('$idUser','$idItem')";
             $result = mysqli_query($db_handle, $sql);
