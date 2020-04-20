@@ -53,7 +53,7 @@
             
             $nom_Item = isset($_POST["nom_Item"])? $_POST["nom_Item"] : "";
             $photos = isset($_FILES["mesphotos"]['name'])? $_FILES["mesphotos"]['name'] : "";
-            $video = isset($_POST["mavideo"])? $_POST["mavideo"] : "";
+            $video = isset($_FILES["mavideo"])? $_FILES["mavideo"] : "";
             $type_vente = isset($_POST["immediat"])? $_POST["immediat"] : "";
             $type2_vente = isset($_POST["enchere"])? $_POST["enchere"] : "";
             $type3_vente= isset($_POST["negocia"])? $_POST["negocia"] : "";

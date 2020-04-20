@@ -16,6 +16,7 @@ if($db_found){
         while($data = mysqli_fetch_assoc($result)){ 
             $nom = $data['nom'];
             $photo = $data['photos'];
+            $video = $data['video'];
             $type_vente = $data['estVenteImmediate'];
             $type2_vente = $data['vente'];
             $categorie = $data['categorie'];
@@ -206,7 +207,7 @@ if($_SESSION['fonction'] == 'acheteur'){ //Affichage de l'accueil seulement si l
 
                         <div class="item">
                             <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item"
-                                    src="http://www.youtube.com/embed/pYf5deeiPf4"></iframe></div>
+                                    src="<?php echo $video;?>"></iframe></div>
                         </div>
 
                     </div>
