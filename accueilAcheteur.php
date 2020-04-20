@@ -183,14 +183,13 @@ if($_SESSION['fonction'] == 'acheteur'){ //Affichage de l'accueil seulement si l
             $idItem = $data['idItem'];
 ?> 
             <div class="col-sm-3">
-            <a href='pageItem.php?idItem=<?php echo $idItem; ?>'><img src="<?php echo $data['photos']; ?>" class="img-responsive" style="width:100%" alt="Image" ></a>
-            <?php echo $idItem; ?>
-                    <div style="float:left">
-                        Nom Item
-                    </div>
-                    <div style="float:right">
-                        Prix
-                    </div>
+                    <a href='pageItem.php?idItem=<?php echo $idItem; ?>'><img src="<?php echo $data['photos']; ?>" class="img-responsive" style="width:100%" alt="Image" ></a>
+                            <div style="float:left">
+                                Nom: <?php echo $data['nom']; ?>
+                            </div>
+                            <div style="float:right">
+                                Prix: <?php echo $data['prix']; ?>
+                            </div>
             </div>
 <?php
         }
