@@ -56,9 +56,7 @@ function testEmpty() {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="accueilAcheteur.php">
-                    <img class="navbar-brand" src="couverture.png">
-                </a>
+                <a class="navbar-brand" href="accueilAcheteur.php">Ebay ECE</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
@@ -373,8 +371,7 @@ function testEmpty() {
                 $dateExpiration = isset($_POST["dateExpiration"]) ? $_POST["dateExpiration"] : "";
                 $codeSecurite = isset($_POST["codeSecurite"])? $_POST["codeSecurite"] : "";
                 $solde = isset($_POST["solde"])? $_POST["solde"] : "";
-                $total = $solde - $prixtotal;
-                
+    
                 // livraison
                 $idItem = isset($_POST["idItem"])? $_POST["idItem"] : "";
                 $nomPrenom = isset($_POST["nomPrenom"])? $_POST["nomPrenom"] : "";
@@ -401,7 +398,7 @@ function testEmpty() {
                     </div>
                 <?php 
                 }else{
-                    $sql = "INSERT INTO paiement(idUtilisateur, typeCarte, numCarte, nomSurCarte, dateExpiration, codeSecurite, solde) VALUES ('$idUtilisateur', '$typeCarte', '$numCarte','$nomSurCarte','$dateExpiration','$codeSecurite')";
+                    $sql = "INSERT INTO paiement(idUtilisateur, typeCarte, numCarte, nomSurCarte, dateExpiration, codeSecurite) VALUES ('$idUtilisateur', '$typeCarte', '$numCarte','$nomSurCarte','$dateExpiration','$codeSecurite')";
                     $result = mysqli_query($db_handle, $sql);
                 }
             }else{ ?>
@@ -427,7 +424,7 @@ function testEmpty() {
                     </div>
                 <?php 
                 }else{
-                    $sql = "INSERT INTO livraison(idUtilisateur, nomPrenom, adresse, ville, codePostal, pays, numTelephone) VALUES ('$idUtilisateur','$nomPrenom','$adresse','$ville','$codePostal','$pays','$numTelephone','$total')";
+                    $sql = "INSERT INTO livraison(idUtilisateur, nomPrenom, adresse, ville, codePostal, pays, numTelephone) VALUES ('$idUtilisateur','$nomPrenom','$adresse','$ville','$codePostal','$pays','$numTelephone')";
                     $result = mysqli_query($db_handle, $sql);
                 }
                 }else{ ?>

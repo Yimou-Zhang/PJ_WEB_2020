@@ -75,11 +75,11 @@
                     $type2_vente = "meilleurOffre"; 
                 }
                 $sql = "SELECT * FROM item";  
-                if ($nom_Item != "") {   // jsp quoi metre ici a la pplace de email
+                if ($nom_Item != "") {   
                     $sql .= " WHERE nom LIKE '%$nom_Item%'";
                 }
-                $result = mysqli_query($db_handle, $sql);
-                if (mysqli_num_rows($result) != 0) {
+                $result_S = mysqli_query($db_handle, $sql);
+                if (mysqli_num_rows($result_S) != 0) {
                     ?>
                         <script>alert("Au moins un champ est vide, tous les champs doivent être remplis (Vidéo optionnelle");</script>
                     <?php
