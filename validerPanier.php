@@ -1,5 +1,11 @@
 <?php 
     session_start();
+    $database = "projet";
+    $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '');
+    $db_found = mysqli_select_db($db_handle, $database);
+    $prixtotal=$_SESSION['prixtotal'];
+    $idUtilisateur = $_SESSION['idUser'];
+
 ?>
 
     
@@ -90,7 +96,176 @@ function testEmpty() {
         <span class="glyphicon glyphicon-ok-circle"></span> Valider le Panier
         </h2>
     </div>
-    
+
+    <div class="test" style="margin-top:4%">
+        <form action="validerPanier.php" method="post" class="contain" enctype='multipart/form-data'>
+                <div class="form-group row" style="margin-top:10px">
+                    <div class="col-sm-6" style="text-align:center">
+                        <button type="submit" class="btn btn-danger" name="utilise">J'ai déjà</button>
+                    </div>
+                    <div class="col-sm-6" style="text-align:center">
+                        <button type="submit" class="btn btn-success" name="ajoute">&nbsp&nbspAjouter&nbsp&nbsp</button> <!--&nbsp conserve les espaces (pour que le bouton soit de la meme forme que Suppr-->
+                    </div>
+                </div>
+                
+         </form>
+    </div>
+    <?php
+        if(isset($_POST["utilise"])){
+    ?>
+    <form action="validerPanier.php" method="post" class="contain" enctype='multipart/form-data'>
+                    <div class="row">
+                        <div class="col-sm-6">
+                        <label for="dest" class="col-sm-3">Nom Prenom</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <input type="text" name="nomPrenom" class="form-control" type="text" placeholder="Nom Prénom" id="dest" required>
+                        </div>      
+                        <label for="adresse" class="col-sm-3">Adresse</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <input type="text" name="adresse" class="form-control" type="text" placeholder="ex: 25 rue Danton" id="adresse" required>
+                        </div>
+                        <label for="numcarte" class="col-sm-3 col-form-label">Numéro de carte</label>
+                        <div class="col-sm-9" style="margin-bottom:17px">
+                            <input type="text" name="numCarte" class="form-control" type="tel" id="numcarte" placeholder="1234 5678 9876" maxlength="15">
+                        </div>
+                        <div style="text-align:center; margin-top:20px">
+                            <input type="submit" name="valider_utiliser" class="btn btn-success"  value="Valider">
+                        </div>
+                        </div>
+                    </div>
+    </form>
+    <?php
+        }
+        if(isset($_POST["valider_utiliser"])){
+            $numCarte = isset($_POST["numCarte"])? $_POST["numCarte"] : "";
+            $nomPrenom = isset($_POST["nomPrenom"])? $_POST["nomPrenom"] : "";
+            $adresse = isset($_POST["adresse"])? $_POST["adresse"] : "";
+            $sql = "SELECT * FROM livraison";
+                if($nomPrenom != ""){
+                    $sql .= " WHERE nomPrenom LIKE '%$nomPrenom%'";
+                    if($adresse != ""){
+                        $sql .=" AND adresse LIKE '%$adresse%' ";
+                    }
+                }
+                $result = mysqli_query($db_handle, $sql);
+                if (mysqli_num_rows($result) == 0) {
+                    echo "Coordonnée non trouvé";
+                }else{
+                    while($data = mysqli_fetch_assoc($result)){
+    ?> 
+<div class="formu">
+        <div class="well">
+            <form action="validerPanier.php" method="post" enctype='multipart/form-data'>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="titretext" style="text-align:center; margin-bottom:50px">
+                            <h4><span class="glyphicon glyphicon-road"></span> Livraison </h4>
+                        </div>    
+                        <label for="dest" class="col-sm-3">Destinataire</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <input type="text" name="nomPrenom" class="form-control" type="text" value="<?php echo $data['nomPrenom'] ?>" id="dest" readonly>
+                        </div>
+                        <label for="adresse" class="col-sm-3">Adresse</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <input type="text" name="adresse" class="form-control" type="text" value="<?php echo $data['adresse'] ?>" id="adresse" readonly>
+                        </div>
+                        
+                        <label for="postal" class="col-sm-3 col-form-label" style="margin-bottom:0px">Code Postal</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                              <input type="text" name="codePostal" class="form-control" type="tel" value="<?php echo $data['codePostal'] ?>" id="postal" readonly maxlength="5">
+                        </div>
+                        
+                        <label for="ville" class="col-sm-3">Ville</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <input type="text" name="ville" class="form-control" type="text" value="<?php echo $data['ville'] ?>" id="ville" readonly>
+                        </div>
+                        <label for="pays" class="col-sm-3 col-form-label">Pays</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <input type="text" name="pays" class="form-control" type="text" value="<?php echo $data['pays'] ?>" id="pays" readonly>
+                        </div>
+                        <label for="tel" class="col-sm-3 col-form-label">Téléphone</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <input type="text" name="numTelephone" class="form-control" type="tel" value="<?php echo $data['numTelephone'] ?>" id="tel" readonly>
+                        </div>
+                    </div>
+                    <?php
+                    }
+                }
+                $sql = "SELECT * FROM paiement";
+                if($nomPrenom != ""){
+                    $sql .= " WHERE nomSurCarte LIKE '%$nomPrenom%'";
+                    if($numCarte != ""){
+                        $sql .=" AND numCarte LIKE '%$numCarte%' ";
+                    }
+                }
+                $result = mysqli_query($db_handle, $sql);
+                if (mysqli_num_rows($result) == 0) {
+                    echo "Coordonnée non trouvé";
+                }else{
+                    while($data = mysqli_fetch_assoc($result)){
+                    ?>
+                    <div class="col-sm-6">
+                        <div class="titretext" style="text-align:center; margin-bottom:50px">
+                            <h4><span class="glyphicon glyphicon-credit-card"></span> Paiement </h4>
+                        </div> 
+
+                        <label for="carte" class="col-sm-3 col-form-label" style="margin-bottom:0px">Type Carte</label>
+                        <div class="col-sm-9" style="margin-bottom:20px; margin-top:8px">   <!--A modifier avec Bootstrap 4.3.1-->
+                            <input type="text" name="numCarte" class="form-control" value="<?php echo $data['typeCarte'] ?>" readonly maxlength="15">
+                        </div>
+                        <label for="numcarte" class="col-sm-3 col-form-label">Numéro de carte</label>
+                        <div class="col-sm-9" style="margin-bottom:17px">
+                            <input type="text" name="numCarte" class="form-control" id="numcarte" value="<?php echo $data['numCarte'] ?>" readonly maxlength="15">
+                        </div>
+                        <label for="nomcarte" class="col-sm-3 col-form-label">Nom sur la carte</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <input type="text" name="nomSurCarte" class="form-control" id="nomcarte" value="<?php echo $data['nomSurCarte'] ?>" readonly>
+                        </div>
+                        <label for="expi" class="col-sm-3 col-form-label">Date Expiration</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <input type="month" name="dateExpiration" class="form-control" id="expi" min="2020-03" value="<?php echo $data['dateExpiration'] ?>" readonly>
+                        </div>
+                        <label for="code" class="col-sm-3 col-form-label">Code de Sécurité</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <input type="text" name="codeSecurite" class="form-control"  value="<?php echo $data['codeSecurite'] ?>" readonly  maxlength="4">
+                        </div>
+                        <label for="code" class="col-sm-3 col-form-label">Solde</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <input type="number" name="solde" class="form-control"  value="<?php echo $data['solde'] ?>" readonly  maxlength="4">
+                        </div>
+                        <label for="code" class="col-sm-3 col-form-label">Prix total : </label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <?php echo $prixtotal; ?>€
+                        </div>
+                    </div>
+                </div>
+
+            <div class="form-check" style="text-align:center; margin-top:50px">
+                <input class="form-check-input" type="checkbox" id="check1" required>
+                <label class="form-check-label" for="check1">
+                    Je confirme que mes données sont valides
+                </label>
+            </div>  
+            
+            <div class="form-check" style="text-align:center">
+                <input class="form-check-input" type="checkbox" id="check2" required>
+                <label class="form-check-label" for="check2">
+                    J'accepte les Termes et Conditions
+                </label>
+            </div>  
+            <div style="text-align:center; margin-top:20px">
+                <input type="submit" name="valider_paiement" class="btn btn-success" onclick="validate()" value="Valider mes Achats">
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <?php 
+        }
+    }
+}
+        if(isset($_POST["ajoute"])){
+    ?>
     <!--A modifier avec Bootstrap 4.3.1, ajouter couleur rouge lorsque pas rempli et vert lorsque rempli-->
     <div class="formu">
         <div class="well">
@@ -186,31 +361,26 @@ function testEmpty() {
             </div>
 
             <?php
-        $database = "projet";
-        $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '');
-        $db_found = mysqli_select_db($db_handle, $database);
-        $prixtotal=$_SESSION['prixtotal'];
-        $idUtilisateur = $_SESSION['idUser'];
-
+        }
         if($db_found){
-        if(isset($_POST["valider_paiement"])){
-            // paiement
-            $typeCarte = isset($_POST["typeCarte"])? $_POST["typeCarte"] : "";
-            $numCarte = isset($_POST["numCarte"])? $_POST["numCarte"] : "";
-            $nomSurCarte = isset($_POST["nomSurCarte"])? $_POST["nomSurCarte"] : "";
-            $dateExpiration = isset($_POST["dateExpiration"]) ? $_POST["dateExpiration"] : "";
-            $codeSecurite = isset($_POST["codeSecurite"])? $_POST["codeSecurite"] : "";
-            $solde = isset($_POST["solde"])? $_POST["solde"] : "";
-
-            // livraison
-            $idItem = isset($_POST["idItem"])? $_POST["idItem"] : "";
-            $nomPrenom = isset($_POST["nomPrenom"])? $_POST["nomPrenom"] : "";
-            $adresse = isset($_POST["adresse"])? $_POST["adresse"] : "";
-            $ville = isset($_POST["ville"])? $_POST["ville"] : "";
-            $codePostal = isset($_POST["codePostal"])? $_POST["codePostal"] : "";
-            $pays = isset($_POST["pays"])? $_POST["pays"] : "";
-            $numTelephone = isset($_POST["numTelephone"])? $_POST["numTelephone"] : "";
-
+            if(isset($_POST["valider_paiement"])){
+                // paiement
+                $typeCarte = isset($_POST["typeCarte"])? $_POST["typeCarte"] : "";
+                $numCarte = isset($_POST["numCarte"])? $_POST["numCarte"] : "";
+                $nomSurCarte = isset($_POST["nomSurCarte"])? $_POST["nomSurCarte"] : "";
+                $dateExpiration = isset($_POST["dateExpiration"]) ? $_POST["dateExpiration"] : "";
+                $codeSecurite = isset($_POST["codeSecurite"])? $_POST["codeSecurite"] : "";
+                $solde = isset($_POST["solde"])? $_POST["solde"] : "";
+    
+                // livraison
+                $idItem = isset($_POST["idItem"])? $_POST["idItem"] : "";
+                $nomPrenom = isset($_POST["nomPrenom"])? $_POST["nomPrenom"] : "";
+                $adresse = isset($_POST["adresse"])? $_POST["adresse"] : "";
+                $ville = isset($_POST["ville"])? $_POST["ville"] : "";
+                $codePostal = isset($_POST["codePostal"])? $_POST["codePostal"] : "";
+                $pays = isset($_POST["pays"])? $_POST["pays"] : "";
+                $numTelephone = isset($_POST["numTelephone"])? $_POST["numTelephone"] : "";
+    
             if($typeCarte || $nomSurCarte || $dateExpiration || $codeSecurite){
                 $sql = "SELECT * FROM paiement";
                 if($idUtilisateur != ""){
@@ -262,7 +432,6 @@ function testEmpty() {
                 <?php
             }
             if($solde>$prixtotal){
-                echo "NON";
                 //Quand on a payé on supprime tout le panier
                 $sql = "SELECT * FROM panier";
                 if($idUtilisateur != ""){
@@ -276,9 +445,13 @@ function testEmpty() {
                         $id_D = $data['idUtilisateur'];
                         $sql_D = "DELETE FROM panier WHERE idUtilisateur LIKE '%$id_D%'";
                         $result_D = mysqli_query($db_handle, $sql_D);
+                        $id_I = $data['idsItem'];
+                        $sql_I = "DELETE FROM item WHERE idItem LIKE '%$id_I%'";
+                        $result_I = mysqli_query($db_handle, $sql_I);
                     }
                 }
                 unset($_SESSION['prixtotal']);
+                header('Location: monPanier.php');
             }
         
             if($solde<$prixtotal)
