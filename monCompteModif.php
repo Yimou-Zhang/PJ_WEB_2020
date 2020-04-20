@@ -222,11 +222,11 @@ if($_SESSION['fonction'] == 'vendeur'){ //Vendeur
                 </div>
             </div>
             <div class="bouton">
-                <a class="btn btn-primary" role="button">
+                <a class="btn btn-primary" role="button" style="margin-bottom:10px">
                     <label class="custom-file-label" for="customFile">Modifier photo de profil</label>
                     <input type="file" class="custom-file-input" name="photo">
                 </a>
-                <input type="submit" class="btn btn-primary" name="confirm_modif" value="Valider les informations" onclick="popup()" >
+                <input type="submit" class="btn btn-success" name="confirm_modif" value="Valider les informations" onclick="popup()" >
             </div>
         </form>
     </div>

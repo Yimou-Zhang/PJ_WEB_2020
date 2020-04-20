@@ -39,7 +39,7 @@
                 ?>
                     <div class="titre"style="margin-top:20px">
                         <h5>
-                            <span class="glyphicon glyphicon-exclamation-sign"> L'item n'existe pas. Réessayez </span>
+                            <span class="glyphicon glyphicon-exclamation-sign"> L'item rentré existe déjà. Veuillez rentrer un nouveau nom d'item </span>
                         </h5>
                     </div>
                 <?php
@@ -199,7 +199,7 @@
             <div class="form-group row">
                 <label for="nomçItem" class="col-sm-2 col-form-label">Nom de l'Item</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text"  name="nom_Item">
+                    <input class="form-control" type="text"  name="nom_Item" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -215,7 +215,7 @@
             <div class="form-group row">
                 <label for="description" class="col-sm-2 col-form-label">Description</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" name="description" rows="4"></textarea>
+                    <textarea class="form-control" name="description" rows="4" required></textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -248,7 +248,7 @@
             <div class="form-group row">
                 <label for="prix" class="col-sm-2 col-form-label">Prix de vente</label>
                 <div class="col-sm-5">
-                    <input class="form-control" type="text" name="prix">
+                    <input class="form-control" type="text" name="prix" required>
                 </div>
             </div>
 

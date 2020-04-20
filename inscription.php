@@ -62,16 +62,27 @@
             width: 30%;
             margin-bottom: 70px;
         }
+
+        .debut{
+            margin-top:10px;
+            text-align:center;
+            color:whitesmoke;
+        }
+
     </style>
 </head>
 
 <body>
-    
+<!--Texte début-->
+<div class="debut">
+    <h5> <p>Bienvenue sur Ebay ECE, site spécialisé dans la vente, l'enchère et la négociation d'items de valeur. </p>
+    <p>Ce site est privé et seuls les membres peuvent y accéder. Pour y accéder, veuillez vous créer un compte.</p> </h5>
+</div>
 
 <!--Titre-->
 <div class="titre">
         <h2>
-        <span class="glyphicon glyphicon-user"></span> S'identifier
+        <span class="glyphicon glyphicon-user"></span> Se créer un compte
         </h2>
     </div>
     
@@ -81,32 +92,32 @@
             <div class="form-group row" style="margin-top:20px">
                 <label for="pseudo" class="col-sm-3 col-form-label">Nom</label>
                 <div class="col-sm-9">
-                    <input class="form-control" type="text" id="pseudo" name="nom">
+                    <input class="form-control" type="text" id="pseudo" name="nom" required>
                 </div>
             </div>
             <div class="form-group row" style="margin-top:20px">
                 <label for="pseudo" class="col-sm-3 col-form-label">Prenom</label>
                 <div class="col-sm-9">
-                    <input class="form-control" type="text" id="pseudo" name="prenom">
+                    <input class="form-control" type="text" id="pseudo" name="prenom" required>
                 </div>
             </div>
             <div class="form-group row" style="margin-top:20px">
                 <label for="email" class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
-                    <input class="form-control" type="text"  id="email" name="email" >
+                    <input class="form-control" type="text"  id="email" name="email" required>
                 </div>
             </div>
             <div class="form-group row"style="margin-top:20px" >
                 <label for="pseudo" class="col-sm-3 col-form-label">Pseudo</label>
                 <div class="col-sm-9">
-                    <input class="form-control" type="text" id="pseudo" name="pseudo">
+                    <input class="form-control" type="text" id="pseudo" name="pseudo" required>
                 </div>
             </div>
             
             <div class="form-group row">
                 <label for="fonction" class="col-sm-3 col-form-label">Fonction</label>
                 <div class="col-sm-9">
-                    <select name="fonction">
+                    <select name="fonction" required>
                         <option value="acheteur">Acheteur </option>
                         <option value="vendeur">Vendeur </option>
                     </select>
@@ -123,20 +134,26 @@
             <div class="form-group row">
                 <label for="password" class="col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-5">
-                    <input type="password" class="form-control" id="password" name="password" >
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-sm-3 col-form-label">Confirmer password</label>
+                <div class="col-sm-5">
+                    <input type="password" class="form-control" id="password" name="password" required>
                 </div>
             </div>
             <div class="bouton" style="text-align:center">
-                <input type="submit" class="btn btn-primary" name="inscrire" value="Inscrire">
+                <input type="submit" class="btn btn-success" name="inscrire" value="S'inscrire">
             </div>
         </form>
     </div>
 
-    <!--Footer-->
+    <!--
     <footer class="container-fluid text-center">
         <p>Site designé par Yimou ZHANG, Pascal CHEN et Matthis LARBODIERE</p>
     </footer>
-
+    -->
 </body>
 
 </html>
