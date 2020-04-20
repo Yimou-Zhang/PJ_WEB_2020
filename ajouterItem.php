@@ -181,7 +181,7 @@ if($_SESSION['fonction'] == 'vendeur'){ //Affichage de l'accueil seulement si l'
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="accueilAcheteur.php"><span class="glyphicon glyphicon-home"></span>
+                    <li><a href="accueilAcheteur.php"><span class="glyphicon glyphicon-home"></span>
                             Accueil</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -203,7 +203,7 @@ if($_SESSION['fonction'] == 'vendeur'){ //Affichage de l'accueil seulement si l'
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="ajouterItem.php"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter/Supprimer Item</a></li>
+                    <li class="active"><a href="ajouterItem.php"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter/Supprimer Item</a></li>
                     <li><a href="Admin_supp_ajoute.php"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter/Supprimer Vendeur</a></li>
                     <li><a href="monCompte.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
                 </ul>
