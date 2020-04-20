@@ -211,8 +211,8 @@ if($_SESSION['fonction'] == 'vendeur'){ //Vendeur
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="ajouterItem.php"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter/Supprimer Item</a></li>
-                    <li><a href="Admin_supp_ajoute.php"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter/Supprimer Vendeur</a></li>
+                    <li><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter/Supprimer Item</a></li>
+                    <li><a href="Admin_supp_ajoute.php"><span class="glyphicon glyphicon-plus"></span> Ajouter/Supprimer Vendeur</a></li>
                     <li class="active"><a href="monCompte.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
                 </ul>
             </div>
