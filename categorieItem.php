@@ -36,6 +36,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+<<<<<<< HEAD
                 <?php 
                 if($_SESSION['fonction'] == 'acheteur'){ //Affichage de l'accueil seulement si l'utilisateur est l'acheteur
                 ?>
@@ -53,6 +54,11 @@
                 <?php   
                 }
                 ?>
+=======
+                <a href="accueilAcheteur.php">
+                    <img class="navbar-brand" src="couverture.png">
+                </a>
+>>>>>>> dd9fe21ca655c14134b61542a9af72a7557a8a1f
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">

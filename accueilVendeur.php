@@ -32,7 +32,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="accueilVendeur.php">Ebay ECE</a>
+                <a href="accueilVendeur.php">
+                    <img class="navbar-brand" src="couverture.png">
+                </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
