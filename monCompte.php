@@ -77,7 +77,7 @@
     <form action="monCompte.php" methode="post" enctype='multipart/form-data'>
 
     <!--Bouton s'identifier vendeur et se déconnecter-->
-    <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
+    <div class="bouton" style="float:right; margin-right: 15px; margin-top:9px">
         <input type="submit" name="se_deco"  class="btn btn-danger" value="Se déconnecter">
     </div>
     </form>
