@@ -62,7 +62,7 @@
 
     <!--Bouton s'identifier vendeur et se déconnecter-->
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
-        <a class="btn btn-danger" href="inscription.php" role="button">Se déconnecter</a>
+        <a class="btn btn-danger" href="connexion.php" role="button">Se déconnecter</a>
     </div>
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
         <a class="btn btn-primary" href="inscription.php" role="button">S'identifier en tant que vendeur</a>
@@ -108,17 +108,70 @@
 
     <!--Boutons se déconnecter et s'identifier vendeur-->
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
-        <a class="btn btn-danger" href="inscription.php" role="button">Se déconnecter</a>
+        <a class="btn btn-danger" href="connexion.php" role="button">Se déconnecter</a>
     </div>
     
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
         <a class="btn btn-primary" href="inscription.php" role="button">S'identifier en tant qu'acheteur</a>
     </div>
 
-    <?php
-    }
+    <?php }
+        if($_SESSION['fonction'] == 'administrateur'){ //Affichage de l'accueil seulement si l'utilisateur est l'admin
     ?>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid fixed-top">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="accueilAcheteur.php">Ebay ECE</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="accueilAcheteur.php"><span class="glyphicon glyphicon-home"></span>
+                            Accueil</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Catégories d'Items</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="categorieItem.php"> Meubles</a><br>
+                            <a class="dropdown-item" href="categorieItem.php"> Tableaux</a><br>
+                            <a class="dropdown-item" href="categorieItem.php"> Bijouterie</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Catégories d'Achats</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="categorieAchat.php"> Vente Directe</a><br>
+                            <a class="dropdown-item" href="categorieAchat.php"> Enchère</a><br>
+                            <a class="dropdown-item" href="categorieAchat.php"> Négociation</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="ajouterItem.php"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter/Supprimer Item</a></li>
+                    <li><a href="Admin_supp_ajoute.php"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter/Supprimer Vendeur</a></li>
+                    <li class="active"><a href="monCompte.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
+    <!--Boutons se déconnecter et s'identifier vendeur-->
+    <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
+        <a class="btn btn-danger" href="connexion.php" role="button">Se déconnecter</a>
+    </div>
+    
+    <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
+        <a class="btn btn-primary" href="inscription.php" role="button">S'identifier en tant qu'acheteur ou vendeur</a>
+    </div>
+
+    <?php 
+        }
+    ?>
 
     <!--Titre avec photo-->
     <div class="titre">

@@ -52,7 +52,7 @@
         <h3>Mes items en ligne</h3><br>
         <div class="row">
             <div class="col-sm-3">
-                <a href="pageItemVendeur.php">
+                <a href="pageItem.php">
                     <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
                     <div style="float:left">
                         Nom Item
@@ -63,7 +63,7 @@
                 </a>
             </div>
             <div class="col-sm-3">
-                <a href="pageItemVendeur.php">
+                <a href="pageItem.php">
                     <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
                     <div style="float:left">
                         Nom Item
@@ -74,7 +74,7 @@
                 </a>
             </div>
             <div class="col-sm-3">
-                <a href="pageItemVendeur.php">
+                <a href="pageItem.php">
                     <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
                     <div style="float:left">
                         Nom Item
@@ -85,7 +85,7 @@
                 </a>
             </div>
             <div class="col-sm-3">
-                <a href="pageItemVendeur.php">
+                <a href="pageItem.php">
                     <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
                     <div style="float:left">
                         Nom Item

@@ -78,7 +78,7 @@
                     header('Location: accueilVendeur.php'); //Vers l'accueil du vendeur
                 }
                 if($data['type'] == 'administrateur') {
-                    header('Location: xxxx.html'); //Vers l'accueil de l'administateur
+                    header('Location: accueilAcheteur.php'); //Vers l'accueil de l'administateur
                 }
                 }
             }

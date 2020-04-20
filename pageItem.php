@@ -51,6 +51,9 @@ if($db_found){
 
 <body>
 
+<?php 
+if($_SESSION['fonction'] == 'acheteur'){ //Affichage de l'accueil seulement si l'utilisateur est l'acheteur
+?>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid fixed-top">
             <div class="navbar-header">
@@ -91,6 +94,88 @@ if($db_found){
             </div>
         </div>
     </nav>
+
+    <?php }
+        if($_SESSION['fonction'] == 'administrateur'){ //Affichage de l'accueil seulement si l'utilisateur est l'admin
+    ?>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid fixed-top">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="accueilAcheteur.php">Ebay ECE</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="accueilAcheteur.php"><span class="glyphicon glyphicon-home"></span>
+                            Accueil</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Catégories d'Items</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="categorieItem.php"> Meubles</a><br>
+                            <a class="dropdown-item" href="categorieItem.php"> Tableaux</a><br>
+                            <a class="dropdown-item" href="categorieItem.php"> Bijouterie</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Catégories d'Achats</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="categorieAchat.php"> Vente Directe</a><br>
+                            <a class="dropdown-item" href="categorieAchat.php"> Enchère</a><br>
+                            <a class="dropdown-item" href="categorieAchat.php"> Négociation</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="ajouterItem.php"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter/Supprimer Item</a></li>
+                    <li><a href="Admin_supp_ajoute.php"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter/Supprimer Vendeur</a></li>
+                    <li><a href="monCompte.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <?php
+    }if($_SESSION['fonction'] == 'vendeur'){
+    ?>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid fixed-top">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="accueilVendeur.php">Ebay ECE</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="accueilVendeur.php"><span class="glyphicon glyphicon-home"></span>
+                            Accueil</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Catégories</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="categorieItem.php">Meubles</a><br>
+                            <a class="dropdown-item" href="categorieItem.php">Tableaux</a><br>
+                            <a class="dropdown-item" href="categorieItem.php">Bijouterie</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="ajouterItem.php"><span class="glyphicon glyphicon-plus"></span> Ajouter/Supprimer Item</a></li>
+                    <li><a href="monCompte.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <?php
+    }
+    ?>
 
     <div class="container">
         <div class="row">
@@ -156,9 +241,26 @@ if($db_found){
         </div>
     </div>
 
+    <?php 
+        if($_SESSION['fonction'] == 'acheteur' || 'administrateur'){ //Affichage de l'accueil seulement si l'utilisateur est l'acheteur ou admin
+    ?>
+
+    <!--Partie Admin et Vendeur-->
+    <div class="bouton">
+        <a href="accueilVendeur.php">
+            <button type="button" class="btn btn-primary">Retour à l'Accueil</button>
+        </a>
+    </div>
+
+    <?php
+        }if($_SESSION['fonction'] == 'acheteur'){ //Affichage de l'accueil seulement si l'utilisateur est acheteur
+    ?>
+
+    <!--Partie Acheteur-->
     <!--A MODIFIER EN PHP, mettre des conditions pour le type d'achat-->
     <div class="bouton">  
 <?php 
+
     if($type_vente == "vente_immediat"){
 ?>
         <form action="pageItem.php?idItem=<?php echo $idItem; ?>" method="post" class="contain" enctype='multipart/form-data'>
@@ -181,9 +283,7 @@ if($db_found){
         }
         $result = mysqli_query($db_handle, $sql);
         if (mysqli_num_rows($result) != 0) {
-            ?>
-             <script> function validate() {alert("Item deja dans le panier");} </script>  <!--JavaScript-->
-            <?php 
+            echo "ITEM DEJA DANS VOTRE PANIER ???";
         }else {
             $sql = "INSERT INTO panier(idUtilisateur, idsItem) VALUES ('$idUser','$idItem')";
             $result = mysqli_query($db_handle, $sql);
@@ -298,6 +398,9 @@ if($db_found){
         </div>
     </div>
 
+    <?php 
+        }  //Fin condition si l'utilisateur est un acheteur
+    ?>
     <!--
     <footer class="container-fluid text-center">
         <p>Site designé par Yimou ZHANG, Pascal CHEN et Matthis LARBODIERE</p>
