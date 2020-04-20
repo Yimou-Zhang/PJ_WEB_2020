@@ -43,9 +43,9 @@ if($_SESSION['fonction'] == 'acheteur'){ //Affichage de l'accueil seulement si l
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Catégories d'Items</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="categorieItem.php"> Meubles</a><br>
-                            <a class="dropdown-item" href="categorieItem.php"> Tableaux</a><br>
-                            <a class="dropdown-item" href="categorieItem.php"> Bijouterie</a>
+                            <a class="dropdown-item" href="categorieItem.php?cate=Meubles"> Meubles</a><br>
+                            <a class="dropdown-item" href="categorieItem.php?cate=Tableaux"> Tableaux</a><br>
+                            <a class="dropdown-item" href="categorieItem.php?cate=Bijoux"> Bijoux</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -87,9 +87,9 @@ if($_SESSION['fonction'] == 'acheteur'){ //Affichage de l'accueil seulement si l
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Catégories d'Items</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="categorieItem.php"> Meubles</a><br>
-                            <a class="dropdown-item" href="categorieItem.php"> Tableaux</a><br>
-                            <a class="dropdown-item" href="categorieItem.php"> Bijouterie</a>
+                            <a class="dropdown-item" href="categorieItem.php?cate=Meubles"> Meubles</a><br>
+                            <a class="dropdown-item" href="categorieItem.php?cate=Tableaux"> Tableaux</a><br>
+                            <a class="dropdown-item" href="categorieItem.php?cate=Bijoux"> Bijoux</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
