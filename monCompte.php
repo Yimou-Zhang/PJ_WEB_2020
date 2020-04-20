@@ -1,6 +1,19 @@
 <?php
     session_start();
+    $database = "projet";
+    $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
+    $db_found = mysqli_select_db($db_handle, $database);
+    $se_deco = isset($_GET['se_deco'])? $_GET["se_deco"] : "";
+    if($db_found){
+        if($se_deco){ 
+            session_unset();
+            session_destroy();
+            echo "quoi";
+            header('location:connexion.php');
+        }
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,11 +72,13 @@
             </div>
         </div>
     </nav>
+    <form action="monCompte.php" methode="post" enctype='multipart/form-data'>
 
     <!--Bouton s'identifier vendeur et se déconnecter-->
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
-        <a class="btn btn-danger" href="connexion.php" role="button">Se déconnecter</a>
+        <input type="submit" name="se_deco"  class="btn btn-danger" value="Se déconnecter">
     </div>
+    </form>
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
         <a class="btn btn-primary" href="inscription.php" role="button">S'identifier en tant que vendeur</a>
     </div>
@@ -108,7 +123,9 @@
 
     <!--Boutons se déconnecter et s'identifier vendeur-->
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
-        <a class="btn btn-danger" href="connexion.php" role="button">Se déconnecter</a>
+    <form action="monCompte.php" methode="post" enctype='multipart/form-data'>
+        <input type="submit" name="se_deco" value="Se déconnecter" class="btn btn-danger" >
+    </form>   
     </div>
     
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
@@ -162,7 +179,9 @@
 
     <!--Boutons se déconnecter et s'identifier vendeur-->
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
-        <a class="btn btn-danger" href="connexion.php" role="button">Se déconnecter</a>
+    <form action="monCompte.php" methode="post" enctype='multipart/form-data'>
+        <input type="submit" name="se_deco" value="Se déconnecter" class="btn btn-danger" >
+    </form>   
     </div>
     
     <div class="bouton" style="float:right; margin-right: 15px; margin-top:5px">
