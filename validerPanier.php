@@ -4,7 +4,7 @@
     $database = "projet";
     $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '');
     $db_found = mysqli_select_db($db_handle, $database);
-    $prixtotal=isset($_POST["prixtotal"])? $_POST["prixtotal"] : "";
+    $prixtotal=$_SESSION['prixtotal'];
     $idUtilisateur = $_SESSION['idUser'];
 ?>
 
@@ -56,6 +56,7 @@ function testEmpty() {
             $nomSurCarte = isset($_POST["nomSurCarte"])? $_POST["nomSurCarte"] : "";
             $dateExpiration = isset($_POST["dateExpiration"]) ? $_POST["dateExpiration"] : "";
             $codeSecurite = isset($_POST["codeSecurite"])? $_POST["codeSecurite"] : "";
+            $solde = isset($_POST["solde"])? $_POST["solde"] : "";
 
             // livraison
             $idItem = isset($_POST["idItem"])? $_POST["idItem"] : "";
@@ -116,24 +117,30 @@ function testEmpty() {
                     <script>alert("Un champ est vide, tous les champs doivent être remplis");</script>
                 <?php
             }
-            
-            //Quand on a payé on supprime tout le panier
-            $sql = "SELECT * FROM panier";
-            if($idUtilisateur != ""){
-                $sql .= " WHERE idUtilisateur LIKE '%$idUtilisateur%'";
-            }
-            $result = mysqli_query($db_handle, $sql);
-            if (mysqli_num_rows($result) == 0) { 
-                echo "Panier non trouvé";
-            }else{
-                while ($data = mysqli_fetch_assoc($result) ) {
-                    $id_D = $data['idUtilisateur'];
-                    $sql_D = "DELETE FROM panier WHERE idUtilisateur LIKE '%$id_D%'";
-                    $result_D = mysqli_query($db_handle, $sql_D);
+            if($solde>$prixtotal){
+                echo "NON";
+                //Quand on a payé on supprime tout le panier
+                $sql = "SELECT * FROM panier";
+                if($idUtilisateur != ""){
+                    $sql .= " WHERE idUtilisateur LIKE '%$idUtilisateur%'";
                 }
-
+                $result = mysqli_query($db_handle, $sql);
+                if (mysqli_num_rows($result) == 0) { 
+                    echo "Panier non trouvé";
+                }else{
+                    while ($data = mysqli_fetch_assoc($result) ) {
+                        $id_D = $data['idUtilisateur'];
+                        $sql_D = "DELETE FROM panier WHERE idUtilisateur LIKE '%$id_D%'";
+                        $result_D = mysqli_query($db_handle, $sql_D);
+                    }
+                }
+                unset($_SESSION['prixtotal']);
             }
-            header('Location : monPanier.php');
+        
+            if($solde<$prixtotal)
+            {
+                echo "Wesh tu n'as pas assez d'argent !"; //A modifier Matthis 
+            }
         }
     }else {
         echo "Database not found";
@@ -254,6 +261,10 @@ function testEmpty() {
                         <label for="code" class="col-sm-3 col-form-label">Code de Sécurité</label>
                         <div class="col-sm-9" style="margin-bottom:15px">
                             <input type="text" name="codeSecurite" class="form-control" type="tel" placeholder="ex: 123" id="code" maxlength="4">
+                        </div>
+                        <label for="code" class="col-sm-3 col-form-label">Solde</label>
+                        <div class="col-sm-9" style="margin-bottom:15px">
+                            <input type="number" name="solde" class="form-control" type="tel" placeholder="ex: 123" id="code" maxlength="4">
                         </div>
                         <label for="code" class="col-sm-3 col-form-label">Prix total : </label>
                         <div class="col-sm-9" style="margin-bottom:15px">
