@@ -1,17 +1,5 @@
 <?php
     session_start();
-    $database = "projet";
-    $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
-    $db_found = mysqli_select_db($db_handle, $database);
-    $se_deco = isset($_GET['se_deco'])? $_GET["se_deco"] : "";
-    if($db_found){
-        if($se_deco){ 
-            session_unset();
-            session_destroy();
-            echo "quoi";
-            header('location:connexion.php');
-        }
-    }
 ?>
 
 <!DOCTYPE html>

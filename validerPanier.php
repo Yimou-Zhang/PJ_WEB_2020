@@ -1,11 +1,5 @@
 <?php 
     session_start();
-
-    $database = "projet";
-    $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '');
-    $db_found = mysqli_select_db($db_handle, $database);
-    $prixtotal=$_SESSION['prixtotal'];
-    $idUtilisateur = $_SESSION['idUser'];
 ?>
 
     
@@ -47,105 +41,6 @@ function testEmpty() {
 </head>
 
 <body>
-<?php
-        if($db_found){
-        if(isset($_POST["valider_paiement"])){
-            // paiement
-            $typeCarte = isset($_POST["typeCarte"])? $_POST["typeCarte"] : "";
-            $numCarte = isset($_POST["numCarte"])? $_POST["numCarte"] : "";
-            $nomSurCarte = isset($_POST["nomSurCarte"])? $_POST["nomSurCarte"] : "";
-            $dateExpiration = isset($_POST["dateExpiration"]) ? $_POST["dateExpiration"] : "";
-            $codeSecurite = isset($_POST["codeSecurite"])? $_POST["codeSecurite"] : "";
-            $solde = isset($_POST["solde"])? $_POST["solde"] : "";
-
-            // livraison
-            $idItem = isset($_POST["idItem"])? $_POST["idItem"] : "";
-            $nomPrenom = isset($_POST["nomPrenom"])? $_POST["nomPrenom"] : "";
-            $adresse = isset($_POST["adresse"])? $_POST["adresse"] : "";
-            $ville = isset($_POST["ville"])? $_POST["ville"] : "";
-            $codePostal = isset($_POST["codePostal"])? $_POST["codePostal"] : "";
-            $pays = isset($_POST["pays"])? $_POST["pays"] : "";
-            $numTelephone = isset($_POST["numTelephone"])? $_POST["numTelephone"] : "";
-
-            if($typeCarte || $nomSurCarte || $dateExpiration || $codeSecurite){
-                $sql = "SELECT * FROM paiement";
-                if($idUtilisateur != ""){
-                    $sql .= " WHERE idUtilisateur LIKE '%$idUtilisateur%'";
-                    if($numCarte != ""){
-                        $sql .=" AND numCarte LIKE '%$numCarte%' ";
-                    }
-                }
-                $result = mysqli_query($db_handle, $sql);
-                if (mysqli_num_rows($result) != 0) { ?>
-                    <div class="titre"style="margin-top:20px">
-                        <h5>
-                            <span class="glyphicon glyphicon-exclamation-sign">Coordonné deja enregistré</span> 
-                        </h5>
-                    </div>
-                <?php 
-                }else{
-                    $sql = "INSERT INTO paiement(idUtilisateur, typeCarte, numCarte, nomSurCarte, dateExpiration, codeSecurite) VALUES ('$idUtilisateur', '$typeCarte', '$numCarte','$nomSurCarte','$dateExpiration','$codeSecurite')";
-                    $result = mysqli_query($db_handle, $sql);
-                }
-            }else{ ?>
-                    <script>alert("Un champ de paiement est vide, tous les champs doivent être remplis");</script>
-                <?php
-                }
-            
-
-            if($idItem || $nomPrenom || $adresse || $ville || $codePostal || $pays || $numTelephone){
-                $sql = "SELECT * FROM livraison";
-                if($idUtilisateur != ""){
-                    $sql .= " WHERE idUtilisateur LIKE '%$idUtilisateur%'";
-                    if($adresse != ""){
-                        $sql .=" AND adresse LIKE '%$adresse%' ";
-                    }
-                }
-                $result = mysqli_query($db_handle, $sql);
-                if (mysqli_num_rows($result) != 0) { ?>
-                    <div class="titre"style="margin-top:20px">
-                        <h5>
-                            <span class="glyphicon glyphicon-exclamation-sign">Adresse deja enregistré</span> 
-                        </h5>
-                    </div>
-                <?php 
-                }else{
-                    $sql = "INSERT INTO livraison(idUtilisateur, nomPrenom, adresse, ville, codePostal, pays, numTelephone) VALUES ('$idUtilisateur','$nomPrenom','$adresse','$ville','$codePostal','$pays','$numTelephone')";
-                    $result = mysqli_query($db_handle, $sql);
-                }
-                }else{ ?>
-                    <script>alert("Un champ est vide, tous les champs doivent être remplis");</script>
-                <?php
-            }
-            if($solde>$prixtotal){
-                echo "NON";
-                //Quand on a payé on supprime tout le panier
-                $sql = "SELECT * FROM panier";
-                if($idUtilisateur != ""){
-                    $sql .= " WHERE idUtilisateur LIKE '%$idUtilisateur%'";
-                }
-                $result = mysqli_query($db_handle, $sql);
-                if (mysqli_num_rows($result) == 0) { 
-                    echo "Panier non trouvé";
-                }else{
-                    while ($data = mysqli_fetch_assoc($result) ) {
-                        $id_D = $data['idUtilisateur'];
-                        $sql_D = "DELETE FROM panier WHERE idUtilisateur LIKE '%$id_D%'";
-                        $result_D = mysqli_query($db_handle, $sql_D);
-                    }
-                }
-                unset($_SESSION['prixtotal']);
-            }
-        
-            if($solde<$prixtotal)
-            {
-                echo "Wesh tu n'as pas assez d'argent !"; //A modifier Matthis 
-            }
-        }
-    }else {
-        echo "Database not found";
-    }
-?>
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid fixed-top">
@@ -256,7 +151,7 @@ function testEmpty() {
                         </div>
                         <label for="expi" class="col-sm-3 col-form-label">Date Expiration</label>
                         <div class="col-sm-9" style="margin-bottom:15px">
-                            <input type="text" name="dateExpiration" class="form-control" type="month" id="expi" min="2020-03" value="2020-04">
+                            <input type="month" name="dateExpiration" class="form-control" id="expi" min="2020-03" value="2020-04">
                         </div>
                         <label for="code" class="col-sm-3 col-form-label">Code de Sécurité</label>
                         <div class="col-sm-9" style="margin-bottom:15px">
@@ -289,6 +184,119 @@ function testEmpty() {
             <div style="text-align:center; margin-top:20px">
                 <input type="submit" name="valider_paiement" class="btn btn-success" onclick="validate()" value="Valider mes Achats">
             </div>
+
+            <?php
+        $database = "projet";
+        $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '');
+        $db_found = mysqli_select_db($db_handle, $database);
+        $prixtotal=$_SESSION['prixtotal'];
+        $idUtilisateur = $_SESSION['idUser'];
+
+        if($db_found){
+        if(isset($_POST["valider_paiement"])){
+            // paiement
+            $typeCarte = isset($_POST["typeCarte"])? $_POST["typeCarte"] : "";
+            $numCarte = isset($_POST["numCarte"])? $_POST["numCarte"] : "";
+            $nomSurCarte = isset($_POST["nomSurCarte"])? $_POST["nomSurCarte"] : "";
+            $dateExpiration = isset($_POST["dateExpiration"]) ? $_POST["dateExpiration"] : "";
+            $codeSecurite = isset($_POST["codeSecurite"])? $_POST["codeSecurite"] : "";
+            $solde = isset($_POST["solde"])? $_POST["solde"] : "";
+
+            // livraison
+            $idItem = isset($_POST["idItem"])? $_POST["idItem"] : "";
+            $nomPrenom = isset($_POST["nomPrenom"])? $_POST["nomPrenom"] : "";
+            $adresse = isset($_POST["adresse"])? $_POST["adresse"] : "";
+            $ville = isset($_POST["ville"])? $_POST["ville"] : "";
+            $codePostal = isset($_POST["codePostal"])? $_POST["codePostal"] : "";
+            $pays = isset($_POST["pays"])? $_POST["pays"] : "";
+            $numTelephone = isset($_POST["numTelephone"])? $_POST["numTelephone"] : "";
+
+            if($typeCarte || $nomSurCarte || $dateExpiration || $codeSecurite){
+                $sql = "SELECT * FROM paiement";
+                if($idUtilisateur != ""){
+                    $sql .= " WHERE idUtilisateur LIKE '%$idUtilisateur%'";
+                    if($numCarte != ""){
+                        $sql .=" AND numCarte LIKE '%$numCarte%' ";
+                    }
+                }
+                $result = mysqli_query($db_handle, $sql);
+                if (mysqli_num_rows($result) != 0) { ?>
+                    <div class="titre"style="margin-top:20px">
+                        <h5>
+                            <span class="glyphicon glyphicon-exclamation-sign">Coordonnées déjà enregistrées</span> 
+                        </h5>
+                    </div>
+                <?php 
+                }else{
+                    $sql = "INSERT INTO paiement(idUtilisateur, typeCarte, numCarte, nomSurCarte, dateExpiration, codeSecurite) VALUES ('$idUtilisateur', '$typeCarte', '$numCarte','$nomSurCarte','$dateExpiration','$codeSecurite')";
+                    $result = mysqli_query($db_handle, $sql);
+                }
+            }else{ ?>
+                    <script>alert("Un champ de paiement est vide, tous les champs doivent être remplis");</script>
+                <?php
+                }
+            
+
+            if($idItem || $nomPrenom || $adresse || $ville || $codePostal || $pays || $numTelephone){
+                $sql = "SELECT * FROM livraison";
+                if($idUtilisateur != ""){
+                    $sql .= " WHERE idUtilisateur LIKE '%$idUtilisateur%'";
+                    if($adresse != ""){
+                        $sql .=" AND adresse LIKE '%$adresse%' ";
+                    }
+                }
+                $result = mysqli_query($db_handle, $sql);
+                if (mysqli_num_rows($result) != 0) { ?>
+                    <div class="titre"style="margin-top:20px">
+                        <h5>
+                            <span class="glyphicon glyphicon-exclamation-sign">Adresse deja enregistrée</span> 
+                        </h5>
+                    </div>
+                <?php 
+                }else{
+                    $sql = "INSERT INTO livraison(idUtilisateur, nomPrenom, adresse, ville, codePostal, pays, numTelephone) VALUES ('$idUtilisateur','$nomPrenom','$adresse','$ville','$codePostal','$pays','$numTelephone')";
+                    $result = mysqli_query($db_handle, $sql);
+                }
+                }else{ ?>
+                    <script>alert("Un champ est vide, tous les champs doivent être remplis");</script>
+                <?php
+            }
+            if($solde>$prixtotal){
+                echo "NON";
+                //Quand on a payé on supprime tout le panier
+                $sql = "SELECT * FROM panier";
+                if($idUtilisateur != ""){
+                    $sql .= " WHERE idUtilisateur LIKE '%$idUtilisateur%'";
+                }
+                $result = mysqli_query($db_handle, $sql);
+                if (mysqli_num_rows($result) == 0) { 
+                    echo "Panier non trouvé";
+                }else{
+                    while ($data = mysqli_fetch_assoc($result) ) {
+                        $id_D = $data['idUtilisateur'];
+                        $sql_D = "DELETE FROM panier WHERE idUtilisateur LIKE '%$id_D%'";
+                        $result_D = mysqli_query($db_handle, $sql_D);
+                    }
+                }
+                unset($_SESSION['prixtotal']);
+            }
+        
+            if($solde<$prixtotal)
+            {
+                ?>
+                    <div class="titre"style="margin-top:20px">
+                        <h5>
+                            <span class="glyphicon glyphicon-exclamation-sign">Vous n'avez pas assez d'argent. Veuillez remplir votre compte</span> 
+                        </h5>
+                    </div>
+                <?php 
+            }
+        }
+    }else {
+        echo "Database not found";
+    }
+?>
+
             </form>
         </div>
     </div>

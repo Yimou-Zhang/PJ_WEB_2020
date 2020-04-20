@@ -50,3 +50,11 @@ footer {
 .test {
     text-align: center;
 }
+
+.aucun {
+    margin:auto;
+    display: block;
+    text-align: center;
+    margin-top: 120px;
+    color: whitesmoke;
+}

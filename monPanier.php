@@ -1,43 +1,5 @@
 <?php
     session_start();
-    $database = "projet";
-    $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
-    $db_found = mysqli_select_db($db_handle, $database);
-    $idUser = $_SESSION['idUser'];
-    if($db_found){
-        if(isset($_POST["oui_supprime"])){
-            $nom_I = isset($_POST["nom_I"])? $_POST["nom_I"] : "";
-        
-            if($nom_I){ 
-                $sql = 0;
-            if ($nom_I != "") {
-                $sql =" SELECT * FROM item WHERE nom LIKE '%$nom_I%'";
-            }
-            $result_a = mysqli_query($db_handle, $sql);
-            if (mysqli_num_rows($result_a) == 0){
-                echo "Item non trouvée"; 
-            }else {
-                while ($data = mysqli_fetch_assoc($result_a)){
-                    $id_Item = $data['idItem'];
-                    $sql_D = "SELECT * FROM panier WHERE idsItem LIKE '%$id_Item%' AND idUtilisateur LIKE '%$idUser%'";
-                    $result_D = mysqli_query($db_handle, $sql_D);
-                    if (mysqli_num_rows($result_D) == 0) {
-                        echo "Item non trouvée"; 
-                    }else {
-                        while ($data = mysqli_fetch_assoc($result_D) ) {
-                        $sql = "DELETE FROM panier ";
-                        $sql .= " WHERE idsItem = $id_Item";
-                        $sql .= " AND idUtilisateur = $idUser";
-                        $result = mysqli_query($db_handle, $sql); 
-                        }
-                    }
-                }
-            }
-            } else {
-                echo "Champ non rempli";
-            }
-        }
-        
 ?>
 
 <!DOCTYPE html>
@@ -102,6 +64,45 @@
         </h2>
     </div>
 
+    <?php 
+    $database = "projet";
+    $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
+    $db_found = mysqli_select_db($db_handle, $database);
+    $idUser = $_SESSION['idUser'];
+    if($db_found){
+        if(isset($_POST["oui_supprime"])){
+            $nom_I = isset($_POST["nom_I"])? $_POST["nom_I"] : "";
+        
+            if($nom_I){ 
+                $sql = 0;
+            if ($nom_I != "") {
+                $sql =" SELECT * FROM item WHERE nom LIKE '%$nom_I%'";
+            }
+            $result_a = mysqli_query($db_handle, $sql);
+            if (mysqli_num_rows($result_a) == 0){
+                echo "Item non trouvé"; 
+            }else {
+                while ($data = mysqli_fetch_assoc($result_a)){
+                    $id_Item = $data['idItem'];
+                    $sql_D = "SELECT * FROM panier WHERE idsItem LIKE '%$id_Item%' AND idUtilisateur LIKE '%$idUser%'";
+                    $result_D = mysqli_query($db_handle, $sql_D);
+                    if (mysqli_num_rows($result_D) == 0) {
+                        echo "Item non trouvé"; 
+                    }else {
+                        while ($data = mysqli_fetch_assoc($result_D) ) {
+                        $sql = "DELETE FROM panier ";
+                        $sql .= " WHERE idsItem = $id_Item";
+                        $sql .= " AND idUtilisateur = $idUser";
+                        $result = mysqli_query($db_handle, $sql); 
+                        }
+                    }
+                }
+            }
+            } else {
+                echo "Champs non remplis";
+            }
+        }
+        ?>
                         
     <div class="row">
         <div class="col-sm-9">
@@ -114,7 +115,13 @@
                             }
                             $result = mysqli_query($db_handle, $sql);
                             if (mysqli_num_rows($result) == 0) {
-                                echo "Pas d'item dans le panier";
+                                ?>
+                                    <div class="aucun">
+                                        <h3>
+                                            <span class="glyphicon glyphicon-exclamation-sign"> Aucun item dans le Panier</span> 
+                                        </h3>
+                                    </div>
+                                <?php 
                             } else {
                                 while($data = mysqli_fetch_assoc($result)){ 
                                     $idItem = $data['idsItem'];
@@ -124,7 +131,13 @@
                                     }
                                     $result_I = mysqli_query($db_handle, $sql_I);
                                     if (mysqli_num_rows($result_I) == 0) {
-                                        echo "Ce vendeur n'existe pas";
+                                        ?>
+                                            <div class="titre"style="margin-top:20px">
+                                                <h5>
+                                                    <span class="glyphicon glyphicon-exclamation-sign">Ce Vendeur n'existe pas</span> 
+                                                </h5>
+                                            </div>
+                                        <?php 
                                     } else {
                                         while($data = mysqli_fetch_assoc($result_I)){ 
                                             $prixtotal = $prixtotal + $data['prix'];
@@ -201,11 +214,11 @@
     }
                                   
 ?>
-
+<!--
 <footer class="container-fluid text-center">
         <p>Site designé par Yimou ZHANG, Pascal CHEN et Matthis LARBODIERE</p>
 </footer>
-
+-->
 
 </body>
 
