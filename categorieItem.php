@@ -36,14 +36,46 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="accueilAcheteur.php">
-                    <img class="navbar-brand" src="couverture.png">
-                </a>
+                <?php 
+                if($_SESSION['fonction'] == 'acheteur'){ //Affichage de l'accueil seulement si l'utilisateur est l'acheteur
+                ?>
+                    <a class="navbar-brand" href="accueilAcheteur.php">Ebay ECE</a>
+                <?php 
+                }
+                if($_SESSION['fonction'] == 'vendeur'){ //Affichage de l'accueil seulement si l'utilisateur est vendeur
+                ?> 
+                    <a class="navbar-brand" href="accueilVendeur.php">Ebay ECE</a>
+                <?php 
+                }
+                if($_SESSION['fonction'] == 'administrateur'){ //Affichage de l'accueil seulement si l'utilisateur est l'administrateur
+                ?>
+                    <a class="navbar-brand" href="accueilAcheteur.php">Ebay ECE</a>
+                <?php   
+                }
+                ?>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="accueilAcheteur.php"><span class="glyphicon glyphicon-home"></span>
-                            Accueil</a></li>
+                
+                <li>
+                <?php 
+                if($_SESSION['fonction'] == 'acheteur'){ //Affichage de l'accueil seulement si l'utilisateur est l'acheteur
+                ?>
+                    <a href="accueilAcheteur.php"><span class="glyphicon glyphicon-home"></span>Accueil</a>   
+                <?php 
+                }
+                if($_SESSION['fonction'] == 'vendeur'){ //Affichage de l'accueil seulement si l'utilisateur est vendeur
+                ?> 
+                    <a href="accueilVendeur.php"><span class="glyphicon glyphicon-home"></span>Accueil</a>
+                <?php 
+                }
+                if($_SESSION['fonction'] == 'administrateur'){ //Affichage de l'accueil seulement si l'utilisateur est l'administrateur
+                ?>
+                    <a href="accueilAcheteur.php"><span class="glyphicon glyphicon-home"></span>Accueil</a>
+                <?php   
+                }
+                ?>
+                </li>           
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Catégories d'Items</a>
@@ -52,7 +84,7 @@
                             <a class="dropdown-item" href="categorieItem.php?cate=Tableaux"> Tableaux</a><br>
                             <a class="dropdown-item" href="categorieItem.php?cate=Bijoux"> Bijouterie</a>
                         </div>
-                    </li>
+                    </li> 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Catégories d'Achats</a>
