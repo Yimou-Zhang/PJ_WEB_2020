@@ -1,3 +1,13 @@
+<?php 
+    session_start();
+    $database = "projet";
+    $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
+    $db_found = mysqli_select_db($db_handle, $database);
+    $idUser = $_SESSION['idUser'];
+
+    if($db_found){
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,9 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="accueilVendeur.php">
-                    <img class="navbar-brand" src="couverture.png">
-                </a>
+                <a class="navbar-brand" href="accueilVendeur.php">Ebay ECE</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
@@ -53,52 +61,32 @@
     <div class="container text-center">
         <h3>Mes items en ligne</h3><br>
         <div class="row">
+<?php //On affiche tous les photos des items 
+    $sql = "SELECT * FROM item WHERE idUtilisateur LIKE '%$idUser'";
+    $result = mysqli_query($db_handle, $sql);
+    if (mysqli_num_rows($result) == 0) {
+        echo "ITEM NON TROUVE ???";
+    } else {             
+        while($data = mysqli_fetch_assoc($result)){ 
+            $idItem = $data['idItem'];
+            ?> 
             <div class="col-sm-3">
-                <a href="pageItem.php">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <div style="float:left">
-                        Nom Item
-                    </div>
-                    <div style="float:right">
-                        Prix
-                    </div>
-                </a>
+                    <a href='pageItem.php?idItem=<?php echo $idItem; ?>'><img src="<?php echo $data['photos']; ?>" class="img-responsive" style="width:100%" alt="Image" ></a>
+                            <div style="float:left">
+                                Nom: <?php echo $data['nom']; ?>
+                            </div>
+                            <div style="float:right">
+                                Prix: <?php echo $data['prix']; ?>
+                            </div>
             </div>
-            <div class="col-sm-3">
-                <a href="pageItem.php">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <div style="float:left">
-                        Nom Item
-                    </div>
-                    <div style="float:right">
-                        Prix
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-3">
-                <a href="pageItem.php">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <div style="float:left">
-                        Nom Item
-                    </div>
-                    <div style="float:right">
-                        Prix
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-3">
-                <a href="pageItem.php">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <div style="float:left">
-                        Nom Item
-                    </div>
-                    <div style="float:right">
-                        Prix
-                    </div>
-                </a>
-            </div>
+<?php
+        }
+    }
+}
+?> 
+
         </div>
-    </div><br>
+    </div><br> 
 
 <!--
     <footer class="container-fluid text-center">
