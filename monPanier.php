@@ -15,14 +15,14 @@
             }
             $result_a = mysqli_query($db_handle, $sql);
             if (mysqli_num_rows($result_a) == 0){
-                echo "Item non trouvée"; 
+                echo "Item non trouvé"; 
             }else {
                 while ($data = mysqli_fetch_assoc($result_a)){
                     $id_Item = $data['idItem'];
                     $sql_D = "SELECT * FROM panier WHERE idsItem LIKE '%$id_Item%' AND idUtilisateur LIKE '%$idUser%'";
                     $result_D = mysqli_query($db_handle, $sql_D);
                     if (mysqli_num_rows($result_D) == 0) {
-                        echo "Item non trouvée"; 
+                        echo "Item non trouvé"; 
                     }else {
                         while ($data = mysqli_fetch_assoc($result_D) ) {
                         $sql = "DELETE FROM panier ";
@@ -114,7 +114,13 @@
                             }
                             $result = mysqli_query($db_handle, $sql);
                             if (mysqli_num_rows($result) == 0) {
-                                echo "Pas d'item dans le panier";
+                                ?>
+                                    <div class="titre" style="margin-top:100px">
+                                        <h3>
+                                            <span class="glyphicon glyphicon-exclamation-sign"> Pas d'Item dans le Panier </span>
+                                        </h3>
+                                    </div>
+                                <?php
                             } else {
                                 while($data = mysqli_fetch_assoc($result)){ 
                                     $idItem = $data['idsItem'];
@@ -152,7 +158,7 @@
                         <div class="col-sm-3"></div>    
                         <div class="col-sm-1">
                         <form action="monPanier.php" method="post" enctype='multipart/form-data'>
-                                <input type="submit" name="supprimer"  class="glyphicon glyphicon-remove-sign" aria-hidden="true" value="Supprime">
+                                <input type="submit" name="supprimer"  class="glyphicon glyphicon-remove-sign" aria-hidden="true" value="Supprimer">
                         </form>
                         </div>
 
@@ -202,11 +208,11 @@
     }
                                   
 ?>
-
+<!--
 <footer class="container-fluid text-center">
         <p>Site designé par Yimou ZHANG, Pascal CHEN et Matthis LARBODIERE</p>
 </footer>
-
+-->
 
 </body>
 

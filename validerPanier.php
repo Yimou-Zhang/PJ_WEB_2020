@@ -93,7 +93,7 @@ function testEmpty() {
     <!--Titre avec icon-->
     <div class="titre">
         <h2>
-        <span class="glyphicon glyphicon-ok-circle"></span> Valider le Panier
+        <span class="glyphicon glyphicon-ok-circle"> Valider le Panier</span> 
         </h2>
     </div>
 
@@ -101,10 +101,10 @@ function testEmpty() {
         <form action="validerPanier.php" method="post" class="contain" enctype='multipart/form-data'>
                 <div class="form-group row" style="margin-top:10px">
                     <div class="col-sm-6" style="text-align:center">
-                        <button type="submit" class="btn btn-danger" name="utilise">J'ai déjà</button>
+                        <button type="submit" class="btn btn-primary" name="utilise">Je conserve les mêmes coordonnées</button>
                     </div>
                     <div class="col-sm-6" style="text-align:center">
-                        <button type="submit" class="btn btn-success" name="ajoute">&nbsp&nbspAjouter&nbsp&nbsp</button> <!--&nbsp conserve les espaces (pour que le bouton soit de la meme forme que Suppr-->
+                        <button type="submit" class="btn btn-primary" name="ajoute">Ajouter infos paiement et livraison</button> <!--&nbsp conserve les espaces (pour que le bouton soit de la meme forme que Suppr-->
                     </div>
                 </div>
                 
@@ -114,25 +114,25 @@ function testEmpty() {
         if(isset($_POST["utilise"])){
     ?>
     <form action="validerPanier.php" method="post" class="contain" enctype='multipart/form-data'>
+                <div class="well" style="margin-right:32%; margin-left:32%; text-align:center">
                     <div class="row">
-                        <div class="col-sm-6">
-                        <label for="dest" class="col-sm-3">Nom Prenom</label>
-                        <div class="col-sm-9" style="margin-bottom:15px">
-                            <input type="text" name="nomPrenom" class="form-control" type="text" placeholder="Nom Prénom" id="dest" required>
-                        </div>      
-                        <label for="adresse" class="col-sm-3">Adresse</label>
-                        <div class="col-sm-9" style="margin-bottom:15px">
-                            <input type="text" name="adresse" class="form-control" type="text" placeholder="ex: 25 rue Danton" id="adresse" required>
-                        </div>
-                        <label for="numcarte" class="col-sm-3 col-form-label">Numéro de carte</label>
-                        <div class="col-sm-9" style="margin-bottom:17px">
-                            <input type="text" name="numCarte" class="form-control" type="tel" id="numcarte" placeholder="1234 5678 9876" maxlength="15">
-                        </div>
-                        <div style="text-align:center; margin-top:20px">
-                            <input type="submit" name="valider_utiliser" class="btn btn-success"  value="Valider">
-                        </div>
-                        </div>
+                            <label for="dest" class="col-sm-3">Nom Prenom</label>
+                            <div class="col-sm-9" style="margin-bottom:15px">
+                                <input type="text" name="nomPrenom" class="form-control" type="text" placeholder="Nom Prénom" id="dest" required>
+                            </div>      
+                            <label for="adresse" class="col-sm-3">Adresse</label>
+                            <div class="col-sm-9" style="margin-bottom:15px">
+                                <input type="text" name="adresse" class="form-control" type="text" placeholder="ex: 25 rue Danton" id="adresse" required>
+                            </div>
+                            <label for="numcarte" class="col-sm-3 col-form-label">Numéro de carte</label>
+                            <div class="col-sm-9" style="margin-bottom:17px">
+                                <input type="text" name="numCarte" class="form-control" type="tel" id="numcarte" placeholder="1234 5678 9876" maxlength="15">
+                            </div>
+                            <div style="text-align:center; margin-top:20px">
+                                <input type="submit" name="valider_utiliser" class="btn btn-success"  value="Valider">
+                            </div>
                     </div>
+                </div>
     </form>
     <?php
         }
@@ -358,6 +358,7 @@ function testEmpty() {
             </div>  
             <div style="text-align:center; margin-top:20px">
                 <input type="submit" name="valider_paiement" class="btn btn-success" onclick="validate()" value="Valider mes Achats">
+            
             </div>
 
             <?php
@@ -439,7 +440,13 @@ function testEmpty() {
                 }
                 $result = mysqli_query($db_handle, $sql);
                 if (mysqli_num_rows($result) == 0) { 
-                    echo "Panier non trouvé";
+                    ?>
+                        <div class="titre"style="margin-top:20px">
+                            <h5>
+                                <span class="glyphicon glyphicon-exclamation-sign"> Pas d'items dans le Panier </span>
+                            </h5>
+                        </div>
+                    <?php
                 }else{
                     while ($data = mysqli_fetch_assoc($result) ) {
                         $id_D = $data['idUtilisateur'];
@@ -451,7 +458,7 @@ function testEmpty() {
                     }
                 }
                 unset($_SESSION['prixtotal']);
-                header('Location: monPanier.php');
+               // header('Location: monPanier.php');
             }
         
             if($solde<$prixtotal)

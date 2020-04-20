@@ -75,7 +75,7 @@
                     $type2_vente = "meilleurOffre"; 
                 }
                 $sql = "SELECT * FROM item";  
-                if ($nom_Item != "") {   
+                if ($nom_Item != "") {   // jsp quoi metre ici a la pplace de email
                     $sql .= " WHERE nom LIKE '%$nom_Item%'";
                 }
                 $result_S = mysqli_query($db_handle, $sql);
