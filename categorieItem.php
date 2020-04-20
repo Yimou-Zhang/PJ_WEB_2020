@@ -3,7 +3,11 @@
     $database = "projet";
     $db_handle = mysqli_connect('127.0.0.1:3308', 'root', '' );
     $db_found = mysqli_select_db($db_handle, $database);
-
+    $categorie = isset($_GET["cate"])? $_GET["cate"] : "";
+    if($categorie != "Meubles" && $categorie != "Tableaux" && $categorie != "Bijoux")
+    {
+        echo "Tu oses ?";
+    }
     if($db_found){
 ?>
 
@@ -42,9 +46,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Catégories d'Items</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="categorieItem.php"> Meubles</a><br>
-                            <a class="dropdown-item" href="categorieItem.php"> Tableaux</a><br>
-                            <a class="dropdown-item" href="categorieItem.php"> Bijouterie</a>
+                            <a class="dropdown-item" href="categorieItem.php?cate=Meubles"> Meubles</a><br>
+                            <a class="dropdown-item" href="categorieItem.php?cate=Tableaux"> Tableaux</a><br>
+                            <a class="dropdown-item" href="categorieItem.php?cate=Bijoux"> Bijouterie</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -92,7 +96,7 @@
         <h3>Items de la Catégorie : </h3><br>  <!--Ajouter nom de la catégorie-->
         <div class="row">
         <?php
-            $sql = "SELECT * FROM item";
+            $sql = "SELECT * FROM item WHERE categorie LIKE '%$categorie%'";
             $result = mysqli_query($db_handle, $sql);
             if (mysqli_num_rows($result) == 0) {
                 echo "ITEM NON TROUVE ???";
