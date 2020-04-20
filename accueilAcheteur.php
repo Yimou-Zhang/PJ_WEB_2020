@@ -76,10 +76,10 @@
         <!--Type de slides du carousel-->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                    <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
-                    <div class="carousel-caption">
-                        <h4>Item à la Une</h4>
-                        <p>Prix spéciaux</p>
+                    <img src="photoaccueil.png" alt="Image">
+                    <div class="carousel-caption" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                        <h1>Bienvenue sur Ebay ECE</h1>
+                        <p><h3>De nouveaux items sont ajoutés chaque jour</h3></p>
                     </div>
             </div>
 

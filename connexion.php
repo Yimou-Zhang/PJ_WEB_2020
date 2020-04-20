@@ -57,7 +57,7 @@
 
 <body>
     <!--Titre-->
-<div class="titre">
+    <div class="titre">
         <h2>
         <span class="glyphicon glyphicon-check"></span> Se connecter
         </h2>
@@ -78,10 +78,10 @@
                     <input class="form-control" type="password"  id="password" name="password" >
                 </div>
             </div>
-            <div class="bouton" style="text-align:center" >
-                <input type="submit" class="btn btn-primary" name="se_connecter" value="Se connecter">
+            <div class="bouton" style="text-align:center">
+                <input type="submit" class="btn btn-success" name="se_connecter" value="Se connecter">
             </div>
-            <div class="bouton" style="text-align:center" >
+            <div class="bouton" style="text-align:center; margin-top:10px">
                 <input  type="submit" class="btn btn-primary" name="s_inscrire" value="S'inscrire">
             </div>
         </form>

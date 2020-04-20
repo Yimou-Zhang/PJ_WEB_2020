@@ -64,7 +64,33 @@
 
 <body>
 
-<?php
+
+
+
+        <!-- D'abord HTML pour afficher les titres et PHP au milieu pour afficher les messages d'erreurs -->
+    
+        <!--Titre-->
+        <div class="titre">
+            <h2>
+            <span class="glyphicon glyphicon-transfer"></span> Ajouter/Supprimer un Vendeur
+            </h2>
+        </div>
+        
+        <!--Formulaire HTML-->
+        <div class="test" style="margin-top:4%">
+        <form action="Admin_supp_ajoute.php" method="post" class="contain" enctype='multipart/form-data'>
+                <div class="form-group row" style="margin-top:10px">
+                    <div class="col-sm-6" style="text-align:center">
+                        <button type="submit" class="btn btn-danger" name="supprime">Supprimer</button>
+                    </div>
+                    <div class="col-sm-6" style="text-align:center">
+                        <button type="submit" class="btn btn-success" name="ajoute">&nbsp&nbspAjouter&nbsp&nbsp</button> <!--&nbsp conserve les espaces (pour que le bouton soit de la meme forme que Suppr-->
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+        <?php
 
 session_start();
 
@@ -104,7 +130,7 @@ session_start();
             ?>
             <div class="titre"style="margin-top:20px">
                 <h5>
-                    <span class="glyphicon glyphicon-exclamation-sign"></span> L'email rentré n'existe pas
+                    <span class="glyphicon glyphicon-exclamation-sign"></span> L'email rentré n'existe pas. Réessayez
                 </h5>
             </div>
             <?php
@@ -143,38 +169,7 @@ session_start();
 
         <?php    }
         }
-        ?>
 
-
-
-
-
-        <!-- On passe sur du HTML pour remplir un formulaire de demande Ajouter ou Supprimer -->
-    
-        <!--Titre-->
-        <div class="titre">
-            <h2>
-            <span class="glyphicon glyphicon-transfer"></span> Ajouter/Supprimer un Vendeur
-            </h2>
-        </div>
-        
-        <!--Formulaire HTML-->
-        <div class="test" style="margin-top:4%">
-        <form action="Admin_supp_ajoute.php" method="post" class="contain" enctype='multipart/form-data'>
-                <div class="form-group row" style="margin-top:10px">
-                    <div class="col-sm-6" style="text-align:center">
-                        <button type="submit" class="btn btn-danger" name="supprime">Supprimer</button>
-                    </div>
-                    <div class="col-sm-6" style="text-align:center">
-                        <button type="submit" class="btn btn-success" name="ajoute">&nbsp&nbspAjouter&nbsp&nbsp</button> <!--&nbsp conserve les espaces (pour que le bouton soit de la meme forme que Suppr-->
-                    </div>
-                </div>
-                
-            </form>
-        </div>
-    
-            <!--PHP-->
-            <?php 
         if(isset($_POST["ajoute"])){ //Les conditions ne fonctionnent qu'avec du php puis on remplit avec un formulaire pour l'email a ajouter
             ?>
 
